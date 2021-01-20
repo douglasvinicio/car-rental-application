@@ -30,7 +30,6 @@ namespace CarRental
             Dashboard dashboardWindow = new Dashboard();
             this.Close();
             dashboardWindow.ShowDialog();
-
         }
     }
 }
