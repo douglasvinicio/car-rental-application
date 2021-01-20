@@ -24,5 +24,13 @@ namespace CarRental
         {
             InitializeComponent();
         }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            Dashboard dashboardWindow = new Dashboard();
+            this.Close();
+            dashboardWindow.ShowDialog();
+
+        }
     }
 }

@@ -1,18 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CarRental
 {
-    class CarsDatabaseContext
+    class CarsDatabaseContext : DbContext
     {
-        public DbSet<Cars> carsDbset { get; set; }
-        public DbSet<Users> usersDbset { get; set; }
-        public DbSet<Customers> customersDbset { get; set; }
-        public DbSet<Rentals> rentalsDbset { get; set; }
-        public DbSet<Returns> returnsDbset { get; set; }        
+        const string DbName = "rentalcardatabase.mdf";
+
+        static string DbPath = Path.Combine(Environment.CurrentDirectory, DbName);
+        public CarsDatabaseContext() : base($@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={DbPath};Integrated Security=True;Connect Timeout=30")
+        {
+
+        }
+
+        public DbSet<Car> Cars { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Rental> Rentals { get; set; }
+        public DbSet<Return> Returns { get; set; }        
     }
 }

@@ -77,9 +77,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Cars.cs" />
+    <Compile Include="CarsDatabaseContext.cs" />
     <Compile Include="Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Global.cs" />
     <Compile Include="Index.xaml.cs">
       <DependentUpon>Index.xaml</DependentUpon>
       <SubType>Code</SubType>
