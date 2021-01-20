@@ -65,6 +65,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ClientsDialog.xaml.cs">
+      <DependentUpon>ClientsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerDialog.xaml.cs">
+      <DependentUpon>CustomerDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Rental.cs" />
+    <Compile Include="Return.cs" />
+    <Compile Include="User.cs" />
+    <Page Include="ClientsDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomerDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -77,8 +94,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Cars.cs" />
+    <Compile Include="Car.cs" />
     <Compile Include="CarsDatabaseContext.cs" />
+    <Compile Include="Customer.cs" />
     <Compile Include="Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>

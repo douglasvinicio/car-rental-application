@@ -15,20 +15,26 @@ using System.Windows.Shapes;
 namespace CarRental
 {
     /// <summary>
-    /// Interaction logic for Dashboard.xaml
+    /// Interaction logic for ClientsDialog.xaml
     /// </summary>
-    public partial class Dashboard : Window
+    public partial class ClientsDialog : Window
     {
-        public Dashboard()
+        public ClientsDialog()
         {
             InitializeComponent();
         }
 
-        private void btnClients_Click(object sender, RoutedEventArgs e)
+        private void btnAddCustomer_Click(object sender, RoutedEventArgs e)
         {
-            ClientsDialog clientsDialog = new ClientsDialog();
-            clientsDialog.Owner = this;
-            clientsDialog.ShowDialog();
+            CustomerDialog customerDialog = new CustomerDialog();
+            customerDialog.Owner = this;
+            customerDialog.ShowDialog();
+        }
+
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
