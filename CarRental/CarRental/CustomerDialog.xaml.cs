@@ -19,9 +19,22 @@ namespace CarRental
     /// </summary>
     public partial class CustomerDialog : Window
     {
-        public CustomerDialog()
+        public CustomerDialog(int id, string name, string address, string city, string state, string country, string phone,string email, bool selected)
         {
             InitializeComponent();
+            
+            if (selected == true)
+            {
+                btnUpdate.IsEnabled = true;
+                btnDelete.IsEnabled = true;
+                txtName.Text = name;
+                txtAddress.Text = address;
+                txtCity.Text = city;
+                txtState.Text = state;
+                txtCountry.Text = country;
+                txtPhone.Text = phone;
+                txtEmail.Text = email;
+            }
         }
     }
 }

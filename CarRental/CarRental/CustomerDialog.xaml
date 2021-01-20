@@ -11,39 +11,39 @@
             <StackPanel Margin="20,0,0,0">
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
                     <Label Height="25.96" Width="84">Name</Label>
-                    <TextBox Height="25" Width="250" />
+                    <TextBox Name="txtName" Height="25" Width="250" />
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
                     <Label Height="25.96" Width="84">Address</Label>
-                    <TextBox Height="25" Width="250" />
+                    <TextBox Name="txtAddress" Height="25" Width="250" />
                 </StackPanel>
             </StackPanel>
             <StackPanel Margin="20,0,0,0" >
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
                     <Label Height="25.96" Width="84">City</Label>
-                    <TextBox Height="25" Width="250" />
+                    <TextBox Name="txtCity" Height="25" Width="250" />
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
                     <Label Height="25.96" Width="84">State</Label>
-                    <TextBox Height="25" Width="250" />
+                    <TextBox Name="txtState" Height="25" Width="250" />
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
                     <Label Height="25.96" Width="84">Country</Label>
-                    <TextBox Height="25" Width="250" />
+                    <TextBox Name="txtCountry" Height="25" Width="250" />
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
                     <Label Height="25.96" Width="84">Phone</Label>
-                    <TextBox Height="25" Width="250" />
+                    <TextBox Name="txtPhone" Height="25" Width="250" />
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
                     <Label Height="25.96" Width="84">Email</Label>
-                    <TextBox Height="25" Width="250" />
+                    <TextBox Name="txtEmail" Height="25" Width="250" />
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Button Margin="105,20,0,0" Content=" Save " Width="75"/>
-                <Button Margin="10,20,0,0" Content=" Update " Width="75" IsEnabled="False"/>
-                <Button Margin="10,20,0,0" Content=" Delete " Width="75" IsEnabled="False"/>
+                <Button Name="btnSave" Margin="105,20,0,0" Content=" Save " Width="75"/>
+                <Button Name="btnUpdate" Margin="10,20,0,0" Content=" Update " Width="75" IsEnabled="False"/>
+                <Button Name="btnDelete" Margin="10,20,0,0" Content=" Delete " Width="75" IsEnabled="False"/>
             </StackPanel>
         </StackPanel>
     </Grid>

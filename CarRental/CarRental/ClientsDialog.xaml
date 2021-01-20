@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ClientsDialog" Height="500" Width="850">
     <Grid>
-        <ListView HorizontalAlignment="Left" Height="378" Margin="21,46,0,0" VerticalAlignment="Top" Width="815">
+        <ListView Name="LvClientDialog" HorizontalAlignment="Left" Height="378" Margin="21,46,0,0" VerticalAlignment="Top" Width="815" SelectionChanged="LvClientDialog_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header=" # " Width="auto" DisplayMemberBinding="{Binding UserId}" />

@@ -17,15 +17,36 @@ namespace CarRental
         [Required]
         [StringLength(30)]
         public string Address { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Country { get; set; }
-        public string Email {get; set;}
-        public string Phone { get; set; }
-
-
         [Required]
         [StringLength(30)]
-        public string Status { get; set; }
+        public string City { get; set; }
+        [Required]
+        [StringLength(30)]
+        public string State { get; set; }
+        [Required]
+        [StringLength(30)]
+        public string Country { get; set; }
+        [Required]
+        [StringLength(30)]
+        public string Phone { get; set; }
+        public string Email {get; set;}
+       
+       
+        public Customer()
+        {
+
+        }
+        public Customer(int id, string name, string address, string city, string state, string country, string phone, string email)
+        {
+            this.CustomerId = id;
+            this.Name = name;
+            this.Address = address;
+            this.City = city;
+            this.State = state;
+            this.Country = country;
+            this.Email = email;
+            this.Phone = phone;
+        }
+            
     }
 }
