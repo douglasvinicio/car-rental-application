@@ -46,7 +46,6 @@ namespace CarRental
             this.Country = country;
             this.Email = email;
             this.Phone = phone;
-        }
-            
+        } 
     }
 }

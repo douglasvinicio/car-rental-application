@@ -4,8 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace CarRental
 {
     class Car
-    {
-        //add the columns
+    {        
         public int RegNum { get; set; }
 
         [Required]

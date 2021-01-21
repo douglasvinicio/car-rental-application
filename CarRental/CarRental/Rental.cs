@@ -18,6 +18,5 @@ namespace CarRental
         public DateTime RentDate { get; set; }
         [Required]
         public double RentFees { get; set; }
-
     }
 }
