@@ -12,7 +12,7 @@ namespace CarRental
     public class Users
     {
         //add the columns
-        
+        [Key]
         public int UserId { get; set; }
 
         [Required]
@@ -22,7 +22,10 @@ namespace CarRental
         [StringLength(30)]
         public string Password { get; set; }
 
-        
+        public override string ToString()
+        {
+            return $"{UserId}, {UserName},{Password} ";
+        }
     }
 
 }

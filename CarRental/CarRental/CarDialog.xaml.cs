@@ -96,6 +96,7 @@ namespace CarRental
         }
         private void BtnSave_Click(object sender, RoutedEventArgs e)     
         {
+            cmbFindAvailability.Text = "";
             //validation to check if the data is correct
             if (!IsFieldsValid()) { return; }
             try
@@ -212,6 +213,7 @@ namespace CarRental
                 var carsAvailable = Global.context.Cars.Where(c => c.Available == "Rented");
                 LvCarsDialog.ItemsSource = carsAvailable.ToList();
             }
+            lblNumOfCars.Content = LvCarsDialog.Items.Count;
         }
     }
 }
