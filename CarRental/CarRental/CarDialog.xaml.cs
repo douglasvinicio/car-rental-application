@@ -212,6 +212,7 @@ namespace CarRental
                 var carsAvailable = Global.context.Cars.Where(c => c.Available == "Rented");
                 LvCarsDialog.ItemsSource = carsAvailable.ToList();
             }
+            lblNumOfCars.Content = LvCarsDialog.Items.Count;
         }
     }
 }
