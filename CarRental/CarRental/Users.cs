@@ -12,7 +12,7 @@ namespace CarRental
     public class Users
     {
         //add the columns
-        
+        [Key]
         public int UserId { get; set; }
 
         [Required]

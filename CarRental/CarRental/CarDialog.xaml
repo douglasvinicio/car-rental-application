@@ -21,7 +21,7 @@
         </ListView>
         <Label Content="Search" HorizontalAlignment="Left" Margin="40,6,0,0" VerticalAlignment="Top" FontSize="16" Width="85"/>
 
-        <StackPanel Margin="606,28,30.4,116">
+        <StackPanel Margin="606,28,30.4,98">
             <StackPanel Margin="20,20,0,0">
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
                     <Label Height="25.96" Width="84" FontSize="14">RegNo</Label>
@@ -53,7 +53,7 @@
                 <Button Name="btnImage" Height="216" Margin="36,50,44.6,0" Click="btnImage_Click">
                     <Grid Width="120" Height="120">
                         <TextBlock x:Name="tbImage" Text="Click to pick picture" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <Image Name="imageViewer" Stretch="UniformToFill" />
+                        <Image Name="imageViewer" Stretch="UniformToFill" Margin="-109,-37" />
                     </Grid>
                 </Button>
             </StackPanel>
@@ -64,7 +64,7 @@
             </StackPanel>
         </StackPanel>
         <Label Content="Total number of Cars:" HorizontalAlignment="Left" Margin="66,539,0,0" VerticalAlignment="Top" Width="184" FontSize="18"/>
-        <Label Name="lblNumOfCars" Content="..." HorizontalAlignment="Left" Margin="269,545,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Name="lblNumOfCars" Content="..." HorizontalAlignment="Left" Margin="269,539,0,0" VerticalAlignment="Top" FontSize="18"/>
         <ComboBox Name="cmbFindAvailability" HorizontalAlignment="Left" Margin="130,9,0,0" VerticalAlignment="Top" Width="234" SelectionChanged="cmbFindAvailability_SelectionChanged"/>
     </Grid>
 </Window>
