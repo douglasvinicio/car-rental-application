@@ -16,15 +16,32 @@ namespace CarRental
 
         [Required]
         [StringLength(30)]
-        public string Brand { get; set; }
+        public string Make { get; set; }
         [Required]
         [StringLength(30)]
         public string Model { get; set; }
         [Required]
         [StringLength(30)]
-        public string Available { get; set; }
+        public string CarYear { get; set; }
+        [Required]
+        [StringLength(30)]
+        public string CarCategory { get; set; }
+        [Required]
+        [StringLength(30)]
+        public string PassCapacity { get; set; }
+        [Required]
+        [StringLength(30)]
+        public string AutoTransmission { get; set; }
+        [Required]
+        [StringLength(30)]
+        public float RentalFee { get; set; }
+        [Required]
+        [StringLength(30)]
+        public string BluetoothConn { get; set; }
+        [Required]
+        [StringLength(30)]
+        public string IsAvailable { get; set; }
         
-        public float FeesPerDay { get; set; }
         public byte[] Photo { get; set; }
 
         //Single Field- always eagerly loaded
@@ -32,7 +49,7 @@ namespace CarRental
 
         public override string ToString()
         {
-            return $"{CarId}, {RegNum},{Brand},{Model},{Available},{FeesPerDay},{Photo}";
+            return $"{CarId}, {RegNum},{Make},{Model},{CarYear}{CarCategory}{PassCapacity}{AutoTransmission}{RentalFee}{BluetoothConn}{IsAvailable},{Photo}";
         }
     }
 }

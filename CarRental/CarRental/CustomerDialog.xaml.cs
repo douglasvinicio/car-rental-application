@@ -22,7 +22,7 @@ namespace CarRental
     {
         
         List<Customer> customerList = new List<Customer>();
-        public CustomerDialog(int id, string name, string address, string city, string state, string country, string phone,string email, bool selected)
+        public CustomerDialog(int id, string name,string driverLicenseNo, string address, string city, string state, string country, string phone,string email, bool selected)
         {
             InitializeComponent();
 
@@ -32,6 +32,7 @@ namespace CarRental
                 btnUpdate.IsEnabled = true;
                 btnDelete.IsEnabled = true;
                 txtName.Text = name;
+                txtLicenceNo.Text = driverLicenseNo;
                 txtAddress.Text = address;
                 txtCity.Text = city;
                 txtState.Text = state;
@@ -45,7 +46,7 @@ namespace CarRental
         {
             MessageBox.Show("hello");
 
-            if ((txtName.Text == "" || txtAddress.Text==""|| txtCity.Text==""|| txtState.Text==""|| txtCountry.Text==""|| txtPhone.Text==""))
+            if ((txtName.Text == "" || txtLicenceNo.Text==""|| txtAddress.Text==""|| txtCity.Text==""|| txtState.Text==""|| txtCountry.Text==""|| txtPhone.Text==""))
             {
                 MessageBox.Show("Enter all the values", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -55,7 +56,7 @@ namespace CarRental
             {
                 //insert into db
                 CarsDatabaseContext ctx = new CarsDatabaseContext();
-                Customer customer = new Customer() { Name = txtName.Text, Address = txtAddress.Text, City=txtCity.Text,State=txtState.Text,Country=txtCountry.Text,Phone=txtPhone.Text,Email=txtEmail.Text };
+                Customer customer = new Customer() { Name = txtName.Text, DriverLicenseNo=txtLicenceNo.Text, Address = txtAddress.Text, City=txtCity.Text,State=txtState.Text,Country=txtCountry.Text,Phone=txtPhone.Text,Email=txtEmail.Text };
                 ctx.Customers.Add(customer);
                 ctx.SaveChanges();
 

@@ -5,38 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarRental"
         mc:Ignorable="d"
-        Title="CustomerDialog" Height="280" Width="380" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="CustomerDialog" Height="350" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <StackPanel Margin="0,10,0,0">
             <StackPanel Margin="20,0,0,0">
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
-                    <Label Height="25.96" Width="84">Name</Label>
+                    <Label Height="25.96" Width="105">Name</Label>
                     <TextBox Name="txtName" Height="25" Width="250" />
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
-                    <Label Height="25.96" Width="84">Address</Label>
+                    <Label Height="25.96" Width="105">Driver License No</Label>
+                    <TextBox Name="txtLicenceNo" Height="25" Width="250" />
+                </StackPanel>
+                <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
+                    <Label Height="25.96" Width="105">Address</Label>
                     <TextBox Name="txtAddress" Height="25" Width="250" />
                 </StackPanel>
             </StackPanel>
             <StackPanel Margin="20,0,0,0" >
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
-                    <Label Height="25.96" Width="84">City</Label>
+                    <Label Height="25.96" Width="105">City</Label>
                     <TextBox Name="txtCity" Height="25" Width="250" />
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
-                    <Label Height="25.96" Width="84">State</Label>
+                    <Label Height="25.96" Width="105">Province</Label>
                     <TextBox Name="txtState" Height="25" Width="250" />
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
-                    <Label Height="25.96" Width="84">Country</Label>
+                    <Label Height="25.96" Width="105">Country</Label>
                     <TextBox Name="txtCountry" Height="25" Width="250" />
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
-                    <Label Height="25.96" Width="84">Phone</Label>
+                    <Label Height="25.96" Width="105">Phone</Label>
                     <TextBox Name="txtPhone" Height="25" Width="250" />
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
-                    <Label Height="25.96" Width="84">Email</Label>
+                    <Label Height="25.96" Width="105">Email</Label>
                     <TextBox Name="txtEmail" Height="25" Width="250" />
                 </StackPanel>
             </StackPanel>
