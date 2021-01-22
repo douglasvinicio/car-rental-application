@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CarRental
 {
-    public class User
+    [Table("Users")]
+    public class Users
     {
         //add the columns
+        
         public int UserId { get; set; }
 
         [Required]
@@ -18,6 +21,8 @@ namespace CarRental
         [Required]
         [StringLength(30)]
         public string Password { get; set; }
+
+        
     }
 
 }

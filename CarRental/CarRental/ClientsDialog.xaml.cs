@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +21,9 @@ namespace CarRental
     /// </summary>
     public partial class ClientsDialog : Window
     {
+        //creating DAL(data access layer)
+        const string connstring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Sim_IPD-program\course contents\12..NET_VB_C#\ToDoWithDatabase\ToDoWithDatabases\ToDoDatabase.mdf;Integrated Security=True;Connect Timeout=30";
+
         private int id;
         private string Name;
         private string Address;
@@ -28,10 +33,13 @@ namespace CarRental
         private string Phone;
         private string Email;
         bool Selected=false;
-
+       
         public ClientsDialog()
         {
             InitializeComponent();
+            Global.context = new CarsDatabaseContext();
+            SqlConnection conn = new SqlConnection(connstring);
+            conn.Open();
 
         }
 
@@ -67,6 +75,16 @@ namespace CarRental
                 this.Selected = true;           
             }
 
+        }
+
+        private void LoadFile()
+        {
+            CarsDatabaseContext ctx = new CarsDatabaseContext();
+
+            //fetching all data with LINQ
+            List<Customer> customer1 = (from c in ctx.Customers select c).ToList<Customer>();
+            List<Customer> customer2 = ctx.Customers.ToList<Customer>();
+            //LvClientDialog.ItemsSource = Global.context.Customers.Include().ToList();
         }
     }
 }

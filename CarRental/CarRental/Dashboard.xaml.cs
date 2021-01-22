@@ -30,5 +30,11 @@ namespace CarRental
             clientsDialog.Owner = this;
             clientsDialog.ShowDialog();
         }
+
+        private void btnCars_Click(object sender, RoutedEventArgs e)
+        {
+            CarDialog carDialog = new CarDialog();
+            carDialog.Show();
+        }
     }
 }

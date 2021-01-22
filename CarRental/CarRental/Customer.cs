@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CarRental
 {
+    [Table("Customer")]
     class Customer
     {
+        [Key]
         public int CustomerId { get; set; }
 
         [Required]
@@ -47,6 +50,10 @@ namespace CarRental
             this.Email = email;
             this.Phone = phone;
         }
-            
+        public override string ToString()
+        {
+            return $"{CustomerId}, {Name},{Address},{City},{State},{Country},{Email},{Phone}";
+        }
+
     }
 }
