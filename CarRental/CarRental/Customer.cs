@@ -17,6 +17,7 @@ namespace CarRental
         [Required]
         [StringLength(30)]
         public string Name { get; set; }
+        public string DriverLicenseNo { get; set; }
         [Required]
         [StringLength(30)]
         public string Address { get; set; }

@@ -26,6 +26,7 @@ namespace CarRental
 
         private int id;
         private string Name;
+        private string DriverLicenseNo;
         private string Address;
         private string City;
         private string State;
@@ -40,17 +41,15 @@ namespace CarRental
             Global.context = new CarsDatabaseContext();
             SqlConnection conn = new SqlConnection(connstring);
             conn.Open();
-
         }
 
         private void btnAddCustomer_Click(object sender, RoutedEventArgs e)
         {
 
-            CustomerDialog customerDialog = new CustomerDialog(id, Name, Address, City, State, Country, Phone, Email,Selected);
+            CustomerDialog customerDialog = new CustomerDialog(id, Name, DriverLicenseNo, Address, City, State, Country, Phone, Email,Selected);
             customerDialog.Owner = this;
             customerDialog.ShowDialog();
         }
-
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
@@ -66,6 +65,7 @@ namespace CarRental
                 Customer customer = (Customer)LvClientDialog.SelectedItem;
                 this.id = customer.CustomerId;
                 this.Name = customer.Name;
+                this.DriverLicenseNo = customer.DriverLicenseNo;
                 this.Address = customer.Address;
                 this.City = customer.City;
                 this.State = customer.State;

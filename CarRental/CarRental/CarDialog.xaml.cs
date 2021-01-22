@@ -29,8 +29,8 @@ namespace CarRental
             Global.context = new CarsDatabaseContext();
             cmbFindAvailability.Items.Add("Available");
             cmbFindAvailability.Items.Add("Rented");
-            cmbAvailable.Items.Add("Available");
-            cmbAvailable.Items.Add("Rented");
+            cmbIsAvailable.Items.Add("Available");
+            cmbIsAvailable.Items.Add("Rented");
             try
             {
                 Global.context = new CarsDatabaseContext();
@@ -60,10 +60,16 @@ namespace CarRental
             }
             Car c = (Car)LvCarsDialog.SelectedItem;
             txtRegNo.Text = c.RegNum;
-            txtBrand.Text = c.Brand;
+            txtMake.Text = c.Make;
             txtModel.Text = c.Model;
-            txtFees.Text =  c.FeesPerDay.ToString();
-            cmbAvailable.Text = c.Available.ToString();          
+            txtCarYear.Text = c.CarYear;
+            txtCatgory.Text = c.CarCategory;
+            txtCapacity.Text = c.PassCapacity;
+            txtAutoTransmission.Text = c.AutoTransmission;
+            txtRentalFee.Text= c.RentalFee.ToString();
+            txtBluetoothConn.Text = c.BluetoothConn;
+
+            cmbIsAvailable.Text = c.IsAvailable.ToString();          
             currCarImage = c.Photo;
             //have a method to convert byte[] Bitmap
             imageViewer.Source = Utils.ByteArrayToBitmapImage(c.Photo);
@@ -103,10 +109,15 @@ namespace CarRental
                 Car c = new Car
                 {
                     RegNum = txtRegNo.Text,
-                    Brand = txtBrand.Text,
+                    Make = txtMake.Text,
                     Model = txtModel.Text,
-                    Available = cmbAvailable.Text,
-                    FeesPerDay = float.Parse(txtFees.Text),
+                    CarYear = txtCarYear.Text,
+                    CarCategory = txtCatgory.Text,
+                    PassCapacity = txtCapacity.Text,
+                    AutoTransmission = txtAutoTransmission.Text,
+                    RentalFee=float.Parse(txtRentalFee.Text),
+                    BluetoothConn=txtBluetoothConn.Text,
+                    IsAvailable = cmbIsAvailable.Text,                   
                     Photo = currCarImage
                 };
 
@@ -148,11 +159,17 @@ namespace CarRental
             try
             {
                 carTobeUpdated.RegNum = txtRegNo.Text;
-                carTobeUpdated.Brand = txtBrand.Text;
+                carTobeUpdated.Make = txtMake.Text;
                 carTobeUpdated.Model = txtModel.Text;
-                carTobeUpdated.FeesPerDay = float.Parse(txtFees.Text);
-                carTobeUpdated.Available = cmbAvailable.Text;
-                   
+                carTobeUpdated.CarYear = txtCarYear.Text;
+                carTobeUpdated.CarCategory = txtCatgory.Text;
+                carTobeUpdated.PassCapacity = txtCapacity.Text;
+                carTobeUpdated.AutoTransmission = txtAutoTransmission.Text;
+                carTobeUpdated.RentalFee = float.Parse(txtRentalFee.Text);
+                carTobeUpdated.BluetoothConn = txtBluetoothConn.Text;
+                carTobeUpdated.IsAvailable = cmbIsAvailable.Text;
+                carTobeUpdated.Photo = currCarImage;
+              
                 Global.context.SaveChanges();
                 //ClearInputs();
                 FetchRecord();
@@ -162,13 +179,15 @@ namespace CarRental
                 MessageBox.Show(ex.Message, "Database operation failed", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-
+                    
 
         public bool IsFieldsValid()
         {
-            if (txtRegNo.Text==""||txtModel.Text==""||txtBrand.Text==""||cmbAvailable.Text==""||txtFees.Text=="")
+            if (txtRegNo.Text==""|| txtMake.Text == ""||txtModel.Text==""|| txtCarYear.Text==""|| txtCatgory.Text==""||
+                 txtCapacity.Text==""|| txtAutoTransmission.Text==""|| txtRentalFee.Text==""|| txtBluetoothConn.Text==""||
+                 cmbIsAvailable.Text=="")
             {
-                MessageBox.Show("Name must be between 2 and 100 characters", "Validation error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("All fields must be filled", "Validation error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
             if (currCarImage == null)
@@ -179,14 +198,19 @@ namespace CarRental
             return true;
         }
 
-
+       
         public void ClearInputs()
         {
             txtRegNo.Text = "";
-            txtBrand.Text = "";
+            txtMake.Text = "";
             txtModel.Text = "";
-            txtFees.Text = "";
-            cmbAvailable.Text = "";
+            txtCarYear.Text = "";
+            txtCatgory.Text = "";
+            txtCapacity.Text = "";
+            txtAutoTransmission.Text = "";
+            txtRentalFee.Text = "";
+            txtBluetoothConn.Text = "";
+            cmbIsAvailable.Text = "";
             imageViewer.Source = null;
             btnDelete.IsEnabled = false;
             btnUpdate.IsEnabled = false;
@@ -204,12 +228,12 @@ namespace CarRental
         {
             if (cmbFindAvailability.SelectedItem.ToString() == "Available")
             {
-                var carsAvailable = Global.context.Cars.Where(c => c.Available == "Available");
+                var carsAvailable = Global.context.Cars.Where(c => c.IsAvailable == "Available");
                 LvCarsDialog.ItemsSource = carsAvailable.ToList();
             }
             else
             {
-                var carsAvailable = Global.context.Cars.Where(c => c.Available == "Rented");
+                var carsAvailable = Global.context.Cars.Where(c => c.IsAvailable == "Rented");
                 LvCarsDialog.ItemsSource = carsAvailable.ToList();
             }
             lblNumOfCars.Content = LvCarsDialog.Items.Count;
