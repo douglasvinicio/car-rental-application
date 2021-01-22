@@ -63,7 +63,7 @@ namespace CarRental
             txtMake.Text = c.Make;
             txtModel.Text = c.Model;
             txtCarYear.Text = c.CarYear;
-            txtCatgory.Text = c.CarCategory;
+            txtCategory.Text = c.CarCategory;
             txtCapacity.Text = c.PassCapacity;
             txtAutoTransmission.Text = c.AutoTransmission;
             txtRentalFee.Text= c.RentalFee.ToString();
@@ -112,7 +112,7 @@ namespace CarRental
                     Make = txtMake.Text,
                     Model = txtModel.Text,
                     CarYear = txtCarYear.Text,
-                    CarCategory = txtCatgory.Text,
+                    CarCategory = txtCategory.Text,
                     PassCapacity = txtCapacity.Text,
                     AutoTransmission = txtAutoTransmission.Text,
                     RentalFee=float.Parse(txtRentalFee.Text),
@@ -162,7 +162,7 @@ namespace CarRental
                 carTobeUpdated.Make = txtMake.Text;
                 carTobeUpdated.Model = txtModel.Text;
                 carTobeUpdated.CarYear = txtCarYear.Text;
-                carTobeUpdated.CarCategory = txtCatgory.Text;
+                carTobeUpdated.CarCategory = txtCategory.Text;
                 carTobeUpdated.PassCapacity = txtCapacity.Text;
                 carTobeUpdated.AutoTransmission = txtAutoTransmission.Text;
                 carTobeUpdated.RentalFee = float.Parse(txtRentalFee.Text);
@@ -183,7 +183,7 @@ namespace CarRental
 
         public bool IsFieldsValid()
         {
-            if (txtRegNo.Text==""|| txtMake.Text == ""||txtModel.Text==""|| txtCarYear.Text==""|| txtCatgory.Text==""||
+            if (txtRegNo.Text==""|| txtMake.Text == ""||txtModel.Text==""|| txtCarYear.Text==""|| txtCategory.Text==""||
                  txtCapacity.Text==""|| txtAutoTransmission.Text==""|| txtRentalFee.Text==""|| txtBluetoothConn.Text==""||
                  cmbIsAvailable.Text=="")
             {
@@ -205,7 +205,7 @@ namespace CarRental
             txtMake.Text = "";
             txtModel.Text = "";
             txtCarYear.Text = "";
-            txtCatgory.Text = "";
+            txtCategory.Text = "";
             txtCapacity.Text = "";
             txtAutoTransmission.Text = "";
             txtRentalFee.Text = "";
