@@ -27,10 +27,8 @@ namespace CarRental
         {
             InitializeComponent();
             Global.context = new CarsDatabaseContext();
-            cmbFindAvailability.Items.Add("Available");
-            cmbFindAvailability.Items.Add("Rented");
-            cmbIsAvailable.Items.Add("Available");
-            cmbIsAvailable.Items.Add("Rented");
+            
+            cmbFindAvailability.ItemsSource = Enum.GetValues(typeof(Car.StatusEnum));
             try
             {
                 Global.context = new CarsDatabaseContext();
@@ -117,7 +115,7 @@ namespace CarRental
                     AutoTransmission = txtAutoTransmission.Text,
                     RentalFee=float.Parse(txtRentalFee.Text),
                     BluetoothConn=txtBluetoothConn.Text,
-                    IsAvailable = cmbIsAvailable.Text,                   
+                    IsAvailable =(Car.StatusEnum )cmbIsAvailable.SelectedItem,                   
                     Photo = currCarImage
                 };
 
@@ -167,7 +165,7 @@ namespace CarRental
                 carTobeUpdated.AutoTransmission = txtAutoTransmission.Text;
                 carTobeUpdated.RentalFee = float.Parse(txtRentalFee.Text);
                 carTobeUpdated.BluetoothConn = txtBluetoothConn.Text;
-                carTobeUpdated.IsAvailable = cmbIsAvailable.Text;
+                carTobeUpdated.IsAvailable = (Car.StatusEnum)cmbIsAvailable.SelectedItem;
                 carTobeUpdated.Photo = currCarImage;
               
                 Global.context.SaveChanges();
@@ -228,12 +226,12 @@ namespace CarRental
         {
             if (cmbFindAvailability.SelectedItem.ToString() == "Available")
             {
-                var carsAvailable = Global.context.Cars.Where(c => c.IsAvailable == "Available");
+                var carsAvailable = Global.context.Cars.Where(c => c.IsAvailable.ToString() == "Available");
                 LvCarsDialog.ItemsSource = carsAvailable.ToList();
             }
             else
             {
-                var carsAvailable = Global.context.Cars.Where(c => c.IsAvailable == "Rented");
+                var carsAvailable = Global.context.Cars.Where(c => c.IsAvailable.ToString() == "Rented");
                 LvCarsDialog.ItemsSource = carsAvailable.ToList();
             }
             lblNumOfCars.Content = LvCarsDialog.Items.Count;

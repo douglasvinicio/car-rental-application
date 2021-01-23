@@ -75,6 +75,9 @@
       <DependentUpon>CustomerDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Rental.cs" />
+    <Compile Include="RentalReturns.xaml.cs">
+      <DependentUpon>RentalReturns.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Returns.cs" />
     <Compile Include="Users.cs" />
     <Compile Include="Utils.cs" />
@@ -113,6 +116,10 @@
       <DependentUpon>Index.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="RentalReturns.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
