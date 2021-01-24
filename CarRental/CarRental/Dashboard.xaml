@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         Title="Dashboard" Height="450" Width="800">
     <Grid>
-
         <StackPanel>
             <Button Background="Orange" Content="Rentals" HorizontalAlignment="Left" Margin="50,70,0,0" VerticalAlignment="Top" Width="67" Height="30"/>
             <Button Click="btnClients_Click" Name="btnClients" Background="Orange" Content="Clients" HorizontalAlignment="Left" Margin="50,30,0,0" VerticalAlignment="Top" Width="67" Height="30"/>
@@ -17,7 +16,6 @@
         </StackPanel>
         <Image Source="Images/Dashboard-Picture.jpg" HorizontalAlignment="Left" Height="414" Margin="152,10,0,0" VerticalAlignment="Top" Width="644"/>
         <TextBlock HorizontalAlignment="Left" Margin="57,32,0,0" TextWrapping="Wrap" FontWeight="Black" Text="Dashboard" VerticalAlignment="Top"/>
-
     </Grid>
 
 </Window>
