@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarRental"
         mc:Ignorable="d"
-        Title="ClientsDialog" Height="500" Width="850">
+        Title="ClientsDialog" Height="500" Width="850" Closing="Window_Closing" Activated="Window_Activated">
     <Grid>
         <ListView Name="LvClientDialog" HorizontalAlignment="Left" Height="378" Margin="21,46,0,0" VerticalAlignment="Top" Width="815" SelectionChanged="LvClientDialog_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header=" # " Width="auto" DisplayMemberBinding="{Binding UserId}" />
-                    <GridViewColumn Header=" Name " Width="200" DisplayMemberBinding="{Binding Name}"  />
-                    <GridViewColumn Header=" Address " Width="280" DisplayMemberBinding="{Binding Address}" />
+                    <GridViewColumn Header=" License No " Width="100" DisplayMemberBinding="{Binding DriverLicenseNo}" />
+                    <GridViewColumn Header=" Name " Width="130" DisplayMemberBinding="{Binding Name}"  />
+                    <GridViewColumn Header=" Address " Width="200" DisplayMemberBinding="{Binding Address}" />
                     <GridViewColumn Header=" City " Width="100" DisplayMemberBinding="{Binding City}" />
                     <GridViewColumn Header=" Phone " Width="100" DisplayMemberBinding="{Binding Phone}" />
                     <GridViewColumn Header=" Email " Width="120" DisplayMemberBinding="{Binding Email}" />
@@ -22,8 +23,10 @@
         <TextBox HorizontalAlignment="Left" Height="23" Margin="81,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="705"/>
         <Label Content="Search" HorizontalAlignment="Left" Margin="21,9,0,0" VerticalAlignment="Top"/>
         <StackPanel Orientation="Horizontal">
-            <Button Click="btnAddCustomer_Click" Name="btnAddCustomer" Content="New customer.." HorizontalAlignment="Left" Margin="650,0,0,15" VerticalAlignment="Bottom" Width="98"/>
-            <Button Click="btnClose_Click" Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="10,0,0,15" VerticalAlignment="Bottom" Width="75"/>
+            <Button Click="btnAddCustomer_Click" x:Name="btnAddCustomer" Content="New customer.." HorizontalAlignment="Left" Margin="420,0,0,15" VerticalAlignment="Bottom" Width="98"/>
+            <Button Click="btnEditCustomer_Click" IsEnabled="False" x:Name="btnEditCustomer" Content="Edit / Update" HorizontalAlignment="Left" Margin="10,0,0,15" VerticalAlignment="Bottom" Width="98"/>
+            <Button Click="btnDeleteCustomer_Click" IsEnabled="False" x:Name="btnDeleteCustomer" Content="Delete" HorizontalAlignment="Left" Margin="10,0,0,15" VerticalAlignment="Bottom" Width="98"/>
+            <Button Click="btnClose_Click" x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="10,0,0,15" VerticalAlignment="Bottom" Width="75"/>
         </StackPanel>
     </Grid>
 </Window>

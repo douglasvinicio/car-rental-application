@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CarRental
 {
-    class Customer
+    [Table("Customer")]
+    public class Customer
     {
+        [Key]
         public int CustomerId { get; set; }
 
         [Required]
         [StringLength(30)]
         public string Name { get; set; }
+        public string DriverLicenseNo { get; set; }
         [Required]
         [StringLength(30)]
         public string Address { get; set; }
@@ -36,8 +40,9 @@ namespace CarRental
         {
 
         }
-        public Customer(int id, string name, string address, string city, string state, string country, string phone, string email)
+        public override string ToString()
         {
+<<<<<<< HEAD
             this.CustomerId = id;
             this.Name = name;
             this.Address = address;
@@ -47,5 +52,10 @@ namespace CarRental
             this.Email = email;
             this.Phone = phone;
         } 
+=======
+            return $"{CustomerId}, {Name},{Address},{City},{State},{Country},{Email},{Phone}";
+        }
+
+>>>>>>> db-first-douglas
     }
 }

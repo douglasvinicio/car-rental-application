@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,59 +16,67 @@ using System.Windows.Shapes;
 
 namespace CarRental
 {
-    /// <summary>
-    /// Interaction logic for ClientsDialog.xaml
-    /// </summary>
+    
     public partial class ClientsDialog : Window
     {
-        private int id;
-        private string Name;
-        private string Address;
-        private string City;
-        private string State;
-        private string Country;
-        private string Phone;
-        private string Email;
-        bool Selected=false;
+        public Customer newCustomer;
 
         public ClientsDialog()
         {
             InitializeComponent();
-
+            LoadData();            
         }
 
+        // Buttons
         private void btnAddCustomer_Click(object sender, RoutedEventArgs e)
         {
-
-            CustomerDialog customerDialog = new CustomerDialog(id, Name, Address, City, State, Country, Phone, Email,Selected);
-            customerDialog.Owner = this;
+            CustomerDialog customerDialog = new CustomerDialog(newCustomer);
             customerDialog.ShowDialog();
         }
 
+        private void btnEditCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            Customer customerUpdate = (Customer)LvClientDialog.SelectedItem;
+            CustomerDialog customerDialog = new CustomerDialog(customerUpdate);
+            customerDialog.ShowDialog();
+        }
 
+        private void btnDeleteCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            Customer customerDelete = (Customer)LvClientDialog.SelectedItem;
+            Global.context.Customers.Remove(customerDelete);
+            Global.context.SaveChanges();
+
+            LoadData();
+        }
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
+        // Selected Item
         private void LvClientDialog_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            btnAddCustomer.Content = "Edit/Delete";
-            var selectedItem = LvClientDialog.SelectedItem;
-            if (selectedItem is Customer)
-            {
-                Customer customer = (Customer)LvClientDialog.SelectedItem;
-                this.id = customer.CustomerId;
-                this.Name = customer.Name;
-                this.Address = customer.Address;
-                this.City = customer.City;
-                this.State = customer.State;
-                this.Country = customer.Country;
-                this.Phone = customer.Phone;
-                this.Email = customer.Email;
-                this.Selected = true;           
-            }
+            btnEditCustomer.IsEnabled = true;
+            btnDeleteCustomer.IsEnabled = true;
+            
+        }
+
+        private void LoadData()
+        {
+            List<Customer> customerList = Global.context.Customers.ToList<Customer>();
+            LvClientDialog.ItemsSource = customerList;
+            LvClientDialog.Items.Refresh();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
 
         }
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
     }
 }
