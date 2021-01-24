@@ -20,9 +20,15 @@ namespace CarRental
     /// </summary>
     public partial class Index : Window
     {
+        //creating DAL(data access layer)
+        const string connstring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Sim_IPD-program\course contents\12..NET_VB_C#\ToDoWithDatabase\ToDoWithDatabases\ToDoDatabase.mdf;Integrated Security=True;Connect Timeout=30";
+
         public Index()
         {
             InitializeComponent();
+            Global.context = new CarsDatabaseContext();
+            //SqlConnection conn = new SqlConnection(connstring);
+            //conn.Open();
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
