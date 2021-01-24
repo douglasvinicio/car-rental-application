@@ -16,75 +16,67 @@ using System.Windows.Shapes;
 
 namespace CarRental
 {
-    /// <summary>
-    /// Interaction logic for ClientsDialog.xaml
-    /// </summary>
+    
     public partial class ClientsDialog : Window
     {
-        //creating DAL(data access layer)
-        const string connstring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Sim_IPD-program\course contents\12..NET_VB_C#\ToDoWithDatabase\ToDoWithDatabases\ToDoDatabase.mdf;Integrated Security=True;Connect Timeout=30";
+        public Customer newCustomer;
 
-        private int id;
-        private string Name;
-        private string DriverLicenseNo;
-        private string Address;
-        private string City;
-        private string State;
-        private string Country;
-        private string Phone;
-        private string Email;
-        bool Selected=false;
-       
         public ClientsDialog()
         {
             InitializeComponent();
-            Global.context = new CarsDatabaseContext();
-            SqlConnection conn = new SqlConnection(connstring);
-            conn.Open();
+            LoadData();            
         }
 
+        // Buttons
         private void btnAddCustomer_Click(object sender, RoutedEventArgs e)
         {
-
-            CustomerDialog customerDialog = new CustomerDialog(id, Name, DriverLicenseNo, Address, City, State, Country, Phone, Email,Selected);
-            customerDialog.Owner = this;
+            CustomerDialog customerDialog = new CustomerDialog(newCustomer);
             customerDialog.ShowDialog();
         }
 
+        private void btnEditCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            Customer customerUpdate = (Customer)LvClientDialog.SelectedItem;
+            CustomerDialog customerDialog = new CustomerDialog(customerUpdate);
+            customerDialog.ShowDialog();
+        }
+
+        private void btnDeleteCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            Customer customerDelete = (Customer)LvClientDialog.SelectedItem;
+            Global.context.Customers.Remove(customerDelete);
+            Global.context.SaveChanges();
+
+            LoadData();
+        }
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
+        // Selected Item
         private void LvClientDialog_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            btnAddCustomer.Content = "Edit/Delete";
-            var selectedItem = LvClientDialog.SelectedItem;
-            if (selectedItem is Customer)
-            {
-                Customer customer = (Customer)LvClientDialog.SelectedItem;
-                this.id = customer.CustomerId;
-                this.Name = customer.Name;
-                this.DriverLicenseNo = customer.DriverLicenseNo;
-                this.Address = customer.Address;
-                this.City = customer.City;
-                this.State = customer.State;
-                this.Country = customer.Country;
-                this.Phone = customer.Phone;
-                this.Email = customer.Email;
-                this.Selected = true;           
-            }
-
+            btnEditCustomer.IsEnabled = true;
+            btnDeleteCustomer.IsEnabled = true;
+            
         }
 
-        private void LoadFile()
+        private void LoadData()
         {
-            CarsDatabaseContext ctx = new CarsDatabaseContext();
-
-            //fetching all data with LINQ
-            List<Customer> customer1 = (from c in ctx.Customers select c).ToList<Customer>();
-            List<Customer> customer2 = ctx.Customers.ToList<Customer>();
-            //LvClientDialog.ItemsSource = Global.context.Customers.Include().ToList();
+            List<Customer> customerList = Global.context.Customers.ToList<Customer>();
+            LvClientDialog.ItemsSource = customerList;
+            LvClientDialog.Items.Refresh();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
     }
 }

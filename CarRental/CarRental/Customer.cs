@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace CarRental
 {
     [Table("Customer")]
-    class Customer
+    public class Customer
     {
         [Key]
         public int CustomerId { get; set; }
@@ -39,17 +39,6 @@ namespace CarRental
         public Customer()
         {
 
-        }
-        public Customer(int id, string name, string address, string city, string state, string country, string phone, string email)
-        {
-            this.CustomerId = id;
-            this.Name = name;
-            this.Address = address;
-            this.City = city;
-            this.State = state;
-            this.Country = country;
-            this.Email = email;
-            this.Phone = phone;
         }
         public override string ToString()
         {

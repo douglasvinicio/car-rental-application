@@ -20,71 +20,68 @@ namespace CarRental
     /// </summary>
     public partial class CustomerDialog : Window
     {
-        
-        List<Customer> customerList = new List<Customer>();
-        public CustomerDialog(int id, string name,string driverLicenseNo, string address, string city, string state, string country, string phone,string email, bool selected)
+        ClientsDialog clientsDialog = new ClientsDialog();
+        public Customer currCustomer; 
+        public CustomerDialog(Customer customer)
         {
             InitializeComponent();
 
-            
-            if (selected == true)
+            if (customer != null)
             {
-                btnUpdate.IsEnabled = true;
-                btnDelete.IsEnabled = true;
-                txtName.Text = name;
-                txtLicenceNo.Text = driverLicenseNo;
-                txtAddress.Text = address;
-                txtCity.Text = city;
-                txtState.Text = state;
-                txtCountry.Text = country;
-                txtPhone.Text = phone;
-                txtEmail.Text = email;
+                currCustomer = customer;
+                PopulateFields();
             }
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("hello");
-
             if ((txtName.Text == "" || txtLicenceNo.Text==""|| txtAddress.Text==""|| txtCity.Text==""|| txtState.Text==""|| txtCountry.Text==""|| txtPhone.Text==""))
             {
-                MessageBox.Show("Enter all the values", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Please enter all the values", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             
             try
-            {
-                //insert into db
-                CarsDatabaseContext ctx = new CarsDatabaseContext();
-                Customer customer = new Customer() { Name = txtName.Text, DriverLicenseNo=txtLicenceNo.Text, Address = txtAddress.Text, City=txtCity.Text,State=txtState.Text,Country=txtCountry.Text,Phone=txtPhone.Text,Email=txtEmail.Text };
-                ctx.Customers.Add(customer);
-                ctx.SaveChanges();
+            {                
+                if (currCustomer != null)
+                {
+                    MessageBox.Show("Not Null");
+                    currCustomer.Name = txtName.Text;
+                    Global.context.SaveChanges();
+                    this.Close();
 
-                MessageBox.Show("record is added");
-                customerList.Add(customer);
-                ResetValue();
+                }
+                else
+                {
+                    Customer customer = new Customer() { Name = txtName.Text, DriverLicenseNo = txtLicenceNo.Text, Address = txtAddress.Text, City = txtCity.Text, State = txtState.Text, Country = txtCountry.Text, Phone = txtPhone.Text, Email = txtEmail.Text };
+                    Global.context.Customers.Add(customer);
+                    Global.context.SaveChanges();
+                    this.Close();
+                }
+
             }
             catch (SqlException exception)
             {
                 Console.WriteLine(exception.Message);
             }
+
             
-            ClientsDialog clientsDialog = new ClientsDialog();
-            clientsDialog.Show();
         }
-     //======================================================================================================
-        private void ResetValue()
+
+        private void PopulateFields()
         {
-            btnUpdate.IsEnabled = false;
-            btnDelete.IsEnabled = false;
-            txtName.Text = "";
-            txtAddress.Text = "";
-            txtCity.Text = "";
-            txtState.Text = "";
-            txtCountry.Text = "";
-            txtPhone.Text = "";
-            txtEmail.Text = "";
+            txtName.Text = currCustomer.Name;
+            txtLicenceNo.Text = currCustomer.DriverLicenseNo;
+            txtAddress.Text = currCustomer.Address;
+            txtCity.Text = currCustomer.City;
+            txtState.Text = currCustomer.State;
+            txtCountry.Text = currCustomer.Country;
+            txtPhone.Text = currCustomer.Phone;
+            txtEmail.Text = currCustomer.Email;
         }
-        //======================================================================================================
+
     }
+
+
+
 }

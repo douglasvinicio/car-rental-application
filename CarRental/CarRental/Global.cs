@@ -8,7 +8,6 @@ namespace CarRental
 {
     class Global
     {
-        public static CarsDatabaseContext context;
-
+        public static CarsDatabaseContext context = new CarsDatabaseContext();
     }
 }
