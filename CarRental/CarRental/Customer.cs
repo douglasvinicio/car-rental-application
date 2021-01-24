@@ -33,29 +33,17 @@ namespace CarRental
         [Required]
         [StringLength(30)]
         public string Phone { get; set; }
-        public string Email {get; set;}
-       
-       
+        public string Email { get; set; }
+
+
         public Customer()
         {
 
         }
         public override string ToString()
         {
-<<<<<<< HEAD
-            this.CustomerId = id;
-            this.Name = name;
-            this.Address = address;
-            this.City = city;
-            this.State = state;
-            this.Country = country;
-            this.Email = email;
-            this.Phone = phone;
-        } 
-=======
             return $"{CustomerId}, {Name},{Address},{City},{State},{Country},{Email},{Phone}";
         }
 
->>>>>>> db-first-douglas
     }
 }

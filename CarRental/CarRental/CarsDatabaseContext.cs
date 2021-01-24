@@ -17,9 +17,8 @@ namespace CarRental
         { }
 
         public virtual DbSet<Car> Cars { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Rental> Rentals { get; set; }
-        public DbSet<Returns> Returns { get; set; }        
     }
 }

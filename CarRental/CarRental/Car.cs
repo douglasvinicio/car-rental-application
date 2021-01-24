@@ -6,10 +6,6 @@ namespace CarRental
 {
     [Table("Car")]
     class Car
-<<<<<<< HEAD
-    {        
-        public int RegNum { get; set; }
-=======
     {
 
         //add the columns
@@ -17,7 +13,6 @@ namespace CarRental
         public int CarId { get; set; }
 
         public string RegNum { get; set; }
->>>>>>> db-first-douglas
 
         [Required]
         [StringLength(30)]
@@ -45,7 +40,7 @@ namespace CarRental
         [Required]
         [EnumDataType(typeof(StatusEnum))]
         public StatusEnum IsAvailable { get; set; }
-        public enum StatusEnum { Available=1, Rented=2 }
+        public enum StatusEnum { Available = 1, Rented = 2 }
         public byte[] Photo { get; set; }
 
         //Single Field- always eagerly loaded

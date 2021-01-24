@@ -74,12 +74,11 @@
     <Compile Include="CustomerDialog.xaml.cs">
       <DependentUpon>CustomerDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Employee.cs" />
     <Compile Include="Rental.cs" />
     <Compile Include="RentalReturns.xaml.cs">
       <DependentUpon>RentalReturns.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Returns.cs" />
-    <Compile Include="Users.cs" />
     <Compile Include="Utils.cs" />
     <Page Include="CarDialog.xaml">
       <SubType>Designer</SubType>

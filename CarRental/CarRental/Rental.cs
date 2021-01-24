@@ -18,8 +18,6 @@ namespace CarRental
         public DateTime RentDate { get; set; }
         [Required]
         public double RentFees { get; set; }
-<<<<<<< HEAD
-=======
 
         //Single Field- always eagerly loaded
         public virtual Car car { set; get; }
@@ -28,6 +26,5 @@ namespace CarRental
         {
             return $"{RentId}, {CarId},{RentDate},{RentFees} ";
         }
->>>>>>> db-first-douglas
     }
 }
