@@ -23,12 +23,11 @@
                     <GridViewColumn Header=" Model " Width="100" DisplayMemberBinding="{Binding Model}" />
                     <GridViewColumn Header=" Year " Width="50" DisplayMemberBinding="{Binding CarYear}" />
                     <GridViewColumn Header=" Category " Width="80" DisplayMemberBinding="{Binding CarCategory}" />
-                    <GridViewColumn Header=" Capacity " Width="60" DisplayMemberBinding="{Binding PassCapacity}" />
-                    <GridViewColumn Header=" Auto Transmission" Width="110" DisplayMemberBinding="{Binding AutoTransmission}" />
-                    <GridViewColumn Header=" RentFee " Width="60" DisplayMemberBinding="{Binding RentalFee}" />
-                    <GridViewColumn Header=" BluetoothConn" Width="100" DisplayMemberBinding="{Binding RentalFee}" />
-
-                    <GridViewColumn Header=" Available " Width="100" DisplayMemberBinding="{Binding Available}" />
+                    <GridViewColumn Header=" Capacity " Width="60" DisplayMemberBinding="{Binding PassengerCapacity}" />
+                    <GridViewColumn Header=" Automatic " Width="110" DisplayMemberBinding="{Binding AutoTransmission}" />
+                    <GridViewColumn Header=" Rental Fee " Width="60" DisplayMemberBinding="{Binding RentalFee}" />
+                    <GridViewColumn Header=" Bluetooth " Width="100" DisplayMemberBinding="{Binding BluetoothConn}" />
+                    <GridViewColumn Header=" Available " Width="100" DisplayMemberBinding="{Binding IsAvailable}" />
                 </GridView>
             </ListView.View>
         </ListView>
@@ -73,28 +72,20 @@
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
-                    <Label Height="25.96" Width="126" FontSize="14">Auto Transmission</Label>
-                    <ComboBox Name="cmbAutomatic" Height="25" Width="250">
-                        <ComboBoxItem Content = "Yes" />
-                        <ComboBoxItem Content = "No" />
-                    </ComboBox>
-                </StackPanel>
-                <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
                     <Label Height="25.96" Width="126" FontSize="14">Rental Fee</Label>
                     <TextBox Name="txtRentalFee" Height="25" Width="250" />
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
+                    <Label Height="25.96" Width="126" FontSize="14">Auto Transmission</Label>
+                    <CheckBox Name="chboxAutomatic" Content="Yes" IsChecked="False"/>
+                </StackPanel>
+                <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
                     <Label Height="25.96" Width="126" FontSize="14">Bluetooth Conn</Label>
-                    <ComboBox Name="cmbBluetooth" Height="25" Width="250">
-                        <ComboBoxItem Content = "Yes" />
-                        <ComboBoxItem Content = "No" />
-                    </ComboBox>
+                    <CheckBox Name="chboxBluetooth" Content="Yes" IsChecked="False"/>
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
                     <Label Height="25.96" Width="126" FontSize="14">IsAvailable</Label>
-                    <ComboBox Name="cmbIsAvailable" Height="25" Width="250">
-                        <ComboBoxItem Content = "Available" />
-                    </ComboBox>
+                    <CheckBox Name="chboxAvailable" Content="Yes" IsChecked="False"/>
                 </StackPanel>
 
             </StackPanel>
@@ -107,9 +98,9 @@
                 </Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,0,-0.4,0">
-                <Button x:Name="btnSave" Margin="105,20,0,0" Content=" Save " Width="75" Click="BtnSave_Click"/>
-                <Button x:Name="btnUpdate" Margin="10,20,0,0" Content=" Update " Width="75" IsEnabled="False"/>
-                <Button x:Name="btnDelete" Margin="10,20,0,0" Content=" Delete " Width="75" IsEnabled="False"/>
+                <Button x:Name="btnAddCar" Margin="105,20,0,0" Content=" Add " Width="75" Click="BtnAddCar_Click"/>
+                <Button Name="btnUpdateCar" Click="btnUpdateCar_Click" Margin="10,20,0,0" Content=" Update " Width="75" IsEnabled="False"/>
+                <Button Name="btnDeleteCar" Click="btnDeleteCar_Click" Margin="10,20,0,0" Content=" Delete " Width="75" IsEnabled="False"/>
             </StackPanel>
         </StackPanel>
 

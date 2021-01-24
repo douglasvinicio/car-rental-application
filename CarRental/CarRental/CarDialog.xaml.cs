@@ -30,7 +30,6 @@ namespace CarRental
         }
         private void FetchRecord()
         {
-            // Include means force eager loading- used for collection in one-to-many relationship
             LvCarsDialog.ItemsSource = Global.context.Cars.ToList();
             lblNumOfCars.Content = LvCarsDialog.Items.Count;
         }
@@ -49,18 +48,18 @@ namespace CarRental
             txtModel.Text = c.Model;
             txtCarYear.Text = c.CarYear;
             cmbCategory.Text = c.CarCategory;
-            cmbCapacity.Text = c.PassCapacity;
-            cmbAutomatic.Text = c.AutoTransmission;
+            cmbCapacity.Text = c.PassengerCapacity.ToString();
+            chboxAutomatic.IsChecked = c.AutoTransmission;
             txtRentalFee.Text= c.RentalFee.ToString();
-            cmbBluetooth.Text = c.BluetoothConn;    
+            chboxBluetooth.IsChecked= c.BluetoothConn;
+            chboxAvailable.IsChecked = c.IsAvailable;
             currCarImage = c.Photo;
-            //have a method to convert byte[] Bitmap
             imageViewer.Source = Utils.ByteArrayToBitmapImage(c.Photo);
-            btnDelete.IsEnabled = true;
-            btnUpdate.IsEnabled = true;
+            btnDeleteCar.IsEnabled = true;
+            btnUpdateCar.IsEnabled = true;
         }
 
-        private void BtnSave_Click(object sender, RoutedEventArgs e)     
+        private void BtnAddCar_Click(object sender, RoutedEventArgs e)     
         {
             //validation to check if the data is correct
             if (!IsFieldsValid()) { return; }
@@ -73,11 +72,11 @@ namespace CarRental
                     Model = txtModel.Text,
                     CarYear = txtCarYear.Text,
                     CarCategory = cmbCategory.Text,
-                    PassCapacity = cmbCapacity.Text,
-                    AutoTransmission = cmbAutomatic.Text,
-                    RentalFee=float.Parse(txtRentalFee.Text),
-                    BluetoothConn=cmbBluetooth.Text,
-                    IsAvailable = (Car.StatusEnum)cmbIsAvailable.SelectedItem,
+                    PassengerCapacity = int.Parse(cmbCapacity.Text),
+                    RentalFee = float.Parse(txtRentalFee.Text),
+                    AutoTransmission = chboxAutomatic.IsChecked.Value,
+                    BluetoothConn = chboxBluetooth.IsChecked.Value,
+                    IsAvailable = chboxAvailable.IsChecked.Value,
                     Photo = currCarImage
                 };
 
@@ -92,9 +91,44 @@ namespace CarRental
                 MessageBox.Show(exc.Message);
             }
         }
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+
+        // Update Car Method
+        private void btnUpdateCar_Click(object sender, RoutedEventArgs e)
+        {
+            if (!IsFieldsValid()) { return; }
+
+            Car carTobeUpdated = (Car)LvCarsDialog.SelectedItem;
+
+            if (carTobeUpdated == null) { return; }
+
+            try
+            {
+                carTobeUpdated.RegNum = txtRegNo.Text;
+                carTobeUpdated.Make = txtMake.Text;
+                carTobeUpdated.Model = txtModel.Text;
+                carTobeUpdated.CarYear = txtCarYear.Text;
+                carTobeUpdated.CarCategory = cmbCategory.Text;
+                carTobeUpdated.PassengerCapacity = int.Parse(cmbCapacity.Text);
+                carTobeUpdated.AutoTransmission = chboxAutomatic.IsChecked.Value;
+                carTobeUpdated.RentalFee = float.Parse(txtRentalFee.Text);
+                carTobeUpdated.BluetoothConn = chboxBluetooth.IsChecked.Value;
+                carTobeUpdated.IsAvailable = chboxAvailable.IsChecked.Value;
+                carTobeUpdated.Photo = currCarImage;
+              
+                Global.context.SaveChanges();
+
+                FetchRecord();
+            }
+            catch (SystemException ex)
+            {
+                MessageBox.Show(ex.Message, "Database operation failed", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void btnDeleteCar_Click(object sender, RoutedEventArgs e)
         {
             Car carTobeDeleted = (Car)LvCarsDialog.SelectedItem;
+
             if (carTobeDeleted == null) { return; }
             if (MessageBoxResult.Yes != MessageBox.Show("Do you want to delete the record?\n" + carTobeDeleted,
                 "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning))
@@ -104,33 +138,6 @@ namespace CarRental
                 Global.context.Cars.Remove(carTobeDeleted);
                 Global.context.SaveChanges();
                 ClearInputs();
-                FetchRecord();
-            }
-            catch (SystemException ex)
-            {
-                MessageBox.Show(ex.Message, "Database operation failed", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-        private void btnUpdate_Click(object sender, RoutedEventArgs e)
-        {
-            if (!IsFieldsValid()) { return; }
-            Car carTobeUpdated = (Car)LvCarsDialog.SelectedItem;
-            if (carTobeUpdated == null) { return; }
-            try
-            {
-                carTobeUpdated.RegNum = txtRegNo.Text;
-                carTobeUpdated.Make = txtMake.Text;
-                carTobeUpdated.Model = txtModel.Text;
-                carTobeUpdated.CarYear = txtCarYear.Text;
-                carTobeUpdated.CarCategory = cmbCategory.Text;
-                carTobeUpdated.PassCapacity = cmbCapacity.Text;
-                carTobeUpdated.AutoTransmission = cmbAutomatic.Text;
-                carTobeUpdated.RentalFee = float.Parse(txtRentalFee.Text);
-                carTobeUpdated.BluetoothConn = cmbBluetooth.Text;
-                carTobeUpdated.Photo = currCarImage;
-              
-                Global.context.SaveChanges();
-                //ClearInputs();
                 FetchRecord();
             }
             catch (SystemException ex)
@@ -159,21 +166,19 @@ namespace CarRental
                     MessageBox.Show(ex.Message, "File reading failed", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
-
         }
-
 
         public bool IsFieldsValid()
         {
             if (txtRegNo.Text == "" || txtMake.Text == "" || txtModel.Text == "" || txtCarYear.Text == "" || cmbCategory.Text == "" ||
-                 cmbCapacity.Text == "" || txtRentalFee.Text == "" || cmbIsAvailable.Text == "")
+                 cmbCapacity.Text == "" || txtRentalFee.Text == "" )
             {
                 MessageBox.Show("All fields must be filled", "Validation error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
             if (currCarImage == null)
             {
-                MessageBox.Show("Choose a picture", "Validation error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Please choose a picture", "Validation error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
             return true;
@@ -188,17 +193,15 @@ namespace CarRental
             txtCarYear.Text = "";
             cmbCategory.Text = "";
             cmbCapacity.Text = "";
-            cmbAutomatic.Text = "";
+            chboxAutomatic.IsChecked = false;
             txtRentalFee.Text = "";
-            cmbBluetooth.Text = "";
-            cmbIsAvailable.Text = "";
+            chboxBluetooth.IsChecked = false;
+            chboxAvailable.IsChecked = false;
             imageViewer.Source = null;
-            btnDelete.IsEnabled = false;
-            btnUpdate.IsEnabled = false;
-
+            btnDeleteCar.IsEnabled = false;
+            btnUpdateCar.IsEnabled = false;
             tbImage.Visibility = Visibility.Visible;
         }
-
 
         private void Window_Activated(object sender, EventArgs e)
         {

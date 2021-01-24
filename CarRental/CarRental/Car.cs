@@ -5,40 +5,47 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace CarRental
 {
     [Table("Car")]
-    class Car
+    public class Car
     {
 
         //add the columns
         [Key]
         public int CarId { get; set; }
 
+        [Required]
+        [StringLength(30)]
         public string RegNum { get; set; }
 
         [Required]
         [StringLength(30)]
         public string Make { get; set; }
+
         [Required]
         [StringLength(30)]
         public string Model { get; set; }
+
         [Required]
         [StringLength(30)]
         public string CarYear { get; set; }
+
         [Required]
         [StringLength(30)]
         public string CarCategory { get; set; }
+        
         [Required]
-        [StringLength(30)]
-        public string PassCapacity { get; set; }
-        [Required]
-        [StringLength(30)]
-        public string AutoTransmission { get; set; }
-        [Required]
-        public float RentalFee { get; set; }
-        [Required]
-        [StringLength(30)]
-        public string BluetoothConn { get; set; }
+        public int PassengerCapacity { get; set; }
+
+        public bool AutoTransmission { get; set; }
+
+        public bool BluetoothConn { get; set; }
 
         public bool IsAvailable { get; set; }
+
+
+        [Required]
+        public float RentalFee { get; set; }
+
+
         public byte[] Photo { get; set; }
 
         //Single Field- always eagerly loaded
@@ -46,7 +53,7 @@ namespace CarRental
 
         public override string ToString()
         {
-            return $"{CarId}, {RegNum},{Make},{Model},{CarYear}{CarCategory}{PassCapacity}{AutoTransmission}{RentalFee}{BluetoothConn}{IsAvailable},{Photo}";
+            return $"{CarId}, {RegNum},{Make},{Model},{CarYear}{CarCategory}{PassengerCapacity}{AutoTransmission}{RentalFee}{BluetoothConn}{IsAvailable},{Photo}";
         }
     }
 }
