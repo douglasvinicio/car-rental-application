@@ -13,7 +13,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Label Content="Search" HorizontalAlignment="Left" Margin="40,6,0,0" VerticalAlignment="Top" FontSize="16" Width="85"/>
-        <ComboBox Name="cmbFindAvailability" HorizontalAlignment="Left" Margin="130,9,0,0" VerticalAlignment="Top" Width="234" SelectionChanged="cmbFindAvailability_SelectionChanged"/>
+        <ComboBox  HorizontalAlignment="Left" Margin="130,9,0,0" VerticalAlignment="Top" Width="234" />
 
         <ListView Name="LvCarsDialog" HorizontalAlignment="Left" Height="442" Margin="10,43,0,0" VerticalAlignment="Top" Width="800" SelectionChanged="LvCarsDialog_SelectionChanged">
             <ListView.View>
@@ -59,15 +59,25 @@
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
                     <Label Height="25.96" Width="126" FontSize="14">Category</Label>
-                    <TextBox Name="txtCategory" Height="25" Width="250" />
+                    <ComboBox Name="cmbCategory" Height="25" Width="250">
+                        <ComboBoxItem Content = "Sedan" />
+                        <ComboBoxItem Content = "HatchBack" />
+                    </ComboBox>
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
                     <Label Height="25.96" Width="126" FontSize="14">Passenger Capacity</Label>
-                    <TextBox Name="txtCapacity" Height="25" Width="250" />
+                    <ComboBox Name="cmbCapacity" Height="25" Width="250">
+                        <ComboBoxItem Content = "4" />
+                        <ComboBoxItem Content = "5" />
+                        <ComboBoxItem Content = "6" />
+                    </ComboBox>
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
                     <Label Height="25.96" Width="126" FontSize="14">Auto Transmission</Label>
-                    <TextBox Name="txtAutoTransmission" Height="25" Width="250" />
+                    <ComboBox Name="cmbAutomatic" Height="25" Width="250">
+                        <ComboBoxItem Content = "Yes" />
+                        <ComboBoxItem Content = "No" />
+                    </ComboBox>
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
                     <Label Height="25.96" Width="126" FontSize="14">Rental Fee</Label>
@@ -75,11 +85,16 @@
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
                     <Label Height="25.96" Width="126" FontSize="14">Bluetooth Conn</Label>
-                    <TextBox Name="txtBluetoothConn" Height="25" Width="250" />
+                    <ComboBox Name="cmbBluetooth" Height="25" Width="250">
+                        <ComboBoxItem Content = "Yes" />
+                        <ComboBoxItem Content = "No" />
+                    </ComboBox>
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
                     <Label Height="25.96" Width="126" FontSize="14">IsAvailable</Label>
-                    <ComboBox Name="cmbIsAvailable" Height="25" Width="250"/>
+                    <ComboBox Name="cmbIsAvailable" Height="25" Width="250">
+                        <ComboBoxItem Content = "Available" />
+                    </ComboBox>
                 </StackPanel>
 
             </StackPanel>
