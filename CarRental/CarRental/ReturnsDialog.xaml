@@ -5,8 +5,116 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarRental"
         mc:Ignorable="d"
-        Title="ReturnsDialog" Height="450" Width="800">
-    <Grid>
+        Title="CarDialog" Height="677.195" Width="1300">
+    <Grid Margin="0,0,17.4,-0.8" >
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="820" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="10,10,26.2,10">
+            <StackPanel Margin="20,20,0,0">
+                <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
+                    <Label Height="25.96" Width="126" FontSize="14">RegNo</Label>
+                    <TextBox Name="txtRegNo" Height="25" Width="250" />
+                </StackPanel>
+                <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
+                    <Label Height="25.96" Width="126" FontSize="14">Make</Label>
+                    <TextBox Name="txtMake" Height="25" Width="250" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="20,0,0,0" >
+                <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
+                    <Label Height="25.96" Width="126" FontSize="14">Model</Label>
+                    <TextBox Name="txtModel" Height="25" Width="250" />
+                </StackPanel>
+                <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
+                    <Label Height="25.96" Width="126" FontSize="14">Car Year</Label>
+                    <TextBox Name="txtCarYear" Height="25" Width="250" />
+                </StackPanel>
+                <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
+                    <Label Height="25.96" Width="126" FontSize="14">Category</Label>
+                    <TextBox Name="txtCategory" Height="25" Width="250" />
+                </StackPanel>
+                <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
+                    <Label Height="25.96" Width="126" FontSize="14">Passenger Capacity</Label>
+                    <TextBox Name="txtCapacity" Height="25" Width="250" />
+                </StackPanel>
+                <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
+                    <Label Height="25.96" Width="126" FontSize="14">Auto Transmission</Label>
+                    <TextBox Name="txtAutoTransmission" Height="25" Width="250" />
+                </StackPanel>
+                <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
+                    <Label Height="25.96" Width="126" FontSize="14">Rental Fee</Label>
+                    <TextBox Name="txtRentalFee" Height="25" Width="250" />
+                </StackPanel>
+                <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
+                    <Label Height="25.96" Width="126" FontSize="14">Bluetooth Conn</Label>
+                    <TextBox Name="txtBluetoothConn" Height="25" Width="250" />
+                </StackPanel>
+                <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
+                    <Label Height="25.96" Width="126" FontSize="14">IsAvailable</Label>
+                    <ComboBox Name="cmbIsAvailable" Height="25" Width="250"/>
+                </StackPanel>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,-0.8,0" Height="49">
+                <Button x:Name="btnSave" Margin="105,20,0,0" Content=" Save " Width="75" />
+                <Button x:Name="btnDelete" Margin="10,20,0,0" Content=" Delete " Width="75" IsEnabled="False"/>
+            </StackPanel>
+            <StackPanel Height="202" Margin="0,0,0.2,0">
+                <Label Content="Total number of Cars:" HorizontalAlignment="Left" Margin="40,40,0,0" VerticalAlignment="Top" Width="184" FontSize="14"/>
+                <Label Content="Cars on Rent:" HorizontalAlignment="Left" Margin="40,20,0,0" VerticalAlignment="Top" Width="184" FontSize="14"/>
+                <Label Content="Cars Returned:" HorizontalAlignment="Left" Margin="40,20,0,0" VerticalAlignment="Top" Width="184" FontSize="14"/>
+            </StackPanel>
+        </StackPanel>
+        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+
         
+        <Label Content="Cars On Rent" Grid.Column="2" HorizontalAlignment="Left" Margin="328,3,0,0" VerticalAlignment="Top" Width="149" FontWeight="Bold"/>
+        <ListView Name="LvCarsOnRent" HorizontalAlignment="Left" Height="228" Margin="10,34,0,0" VerticalAlignment="Top" Width="800"  Grid.Column="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header=" RegNo " Width="50" DisplayMemberBinding="{Binding RegNum}" />
+                    <GridViewColumn Header=" Make " Width="100" DisplayMemberBinding="{Binding Make}"  />
+                    <GridViewColumn Header=" Model " Width="100" DisplayMemberBinding="{Binding Model}" />
+                    <GridViewColumn Header=" Year " Width="50" DisplayMemberBinding="{Binding CarYear}" />
+                    <GridViewColumn Header=" Category " Width="80" DisplayMemberBinding="{Binding CarCategory}" />
+                    <GridViewColumn Header=" Capacity " Width="60" DisplayMemberBinding="{Binding PassCapacity}" />
+                    <GridViewColumn Header=" Auto Transmission" Width="110" DisplayMemberBinding="{Binding AutoTransmission}" />
+                    <GridViewColumn Header=" RentFee " Width="60" DisplayMemberBinding="{Binding RentalFee}" />
+                    <GridViewColumn Header=" BluetoothConn" Width="100" DisplayMemberBinding="{Binding RentalFee}" />
+
+                    <GridViewColumn Header=" Available " Width="100" DisplayMemberBinding="{Binding Available}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+        <Label Name="lblNumOfCars" Content="..." HorizontalAlignment="Left" Margin="247,371,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.188,-0.912" Width="21"/>
+        <Label Content="Cars Returned" Grid.Column="2" HorizontalAlignment="Left" Margin="328,287,0,0" VerticalAlignment="Top" Width="149" FontWeight="Bold"/>
+        <ListView x:Name="LvCarsReturned" HorizontalAlignment="Left" Height="255" Margin="10,318,0,0" VerticalAlignment="Top" Width="800"  Grid.Column="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header=" RegNo " Width="50" DisplayMemberBinding="{Binding RegNum}" />
+                    <GridViewColumn Header=" Make " Width="100" DisplayMemberBinding="{Binding Make}"  />
+                    <GridViewColumn Header=" Model " Width="100" DisplayMemberBinding="{Binding Model}" />
+                    <GridViewColumn Header=" Year " Width="50" DisplayMemberBinding="{Binding CarYear}" />
+                    <GridViewColumn Header=" Category " Width="80" DisplayMemberBinding="{Binding CarCategory}" />
+                    <GridViewColumn Header=" Capacity " Width="60" DisplayMemberBinding="{Binding PassCapacity}" />
+                    <GridViewColumn Header=" Auto Transmission" Width="110" DisplayMemberBinding="{Binding AutoTransmission}" />
+                    <GridViewColumn Header=" RentFee " Width="60" DisplayMemberBinding="{Binding RentalFee}" />
+                    <GridViewColumn Header=" BluetoothConn" Width="100" DisplayMemberBinding="{Binding RentalFee}" />
+
+                    <GridViewColumn Header=" Available " Width="100" DisplayMemberBinding="{Binding Available}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label x:Name="lblNumOfCarsOnRent" Content="..." HorizontalAlignment="Left" Margin="247,426,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.188,-0.912" Width="21"/>
+        <Label x:Name="lblNumOfCarsReturned" Content="..." HorizontalAlignment="Left" Margin="247,465,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.188,-0.912" Width="21"/>
+
+
     </Grid>
 </Window>
+
