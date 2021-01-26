@@ -12,19 +12,23 @@ namespace CarRental
     class Rental
     {
         [Key]
-        public int RentId { get; set; }         
+        public int RentId { get; set; }    
+        
+        [ForeignKey("Car")]
         public int CarId { get; set; }
-        [Required]
-        public DateTime RentDate { get; set; }
-        [Required]
-        public double RentFees { get; set; }
 
-        //Single Field- always eagerly loaded
-        public virtual Car car { set; get; }
+        [ForeignKey("Customer")]
+        public int CustomerId { get; set; }
 
-        public override string ToString()
-        {
-            return $"{RentId}, {CarId},{RentDate},{RentFees} ";
-        }
+        [Required]
+        public DateTime RentalDate { get; set; }
+
+        [Required]
+        public DateTime ReturnDate { get; set; }
+
+        public int Discount { get; set; }
+        
+        public string RentalStatus { get; set; }
+
     }
 }
