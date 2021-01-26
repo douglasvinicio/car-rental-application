@@ -8,7 +8,7 @@
         Title="Dashboard" Height="450" Width="800">
     <Grid>
         <StackPanel>
-            <Button Background="Orange" Content="Rentals" HorizontalAlignment="Left" Margin="50,70,0,0" VerticalAlignment="Top" Width="67" Height="30"/>
+            <Button Click="btnRentals_Click" Name="btnRentals" Background="Orange" Content="Rentals" HorizontalAlignment="Left" Margin="50,70,0,0" VerticalAlignment="Top" Width="67" Height="30"/>
             <Button Click="btnClients_Click" Name="btnClients" Background="Orange" Content="Clients" HorizontalAlignment="Left" Margin="50,30,0,0" VerticalAlignment="Top" Width="67" Height="30"/>
             <Button Name="btnCars" Background="Orange" Content="Cars" HorizontalAlignment="Left" Margin="50,30,0,0" VerticalAlignment="Top" Width="67" Height="30" Click="btnCars_Click"/>
             <Button Background="Orange" Content="Returns" HorizontalAlignment="Left" Margin="50,30,0,0" VerticalAlignment="Top" Width="67" Height="30"/>

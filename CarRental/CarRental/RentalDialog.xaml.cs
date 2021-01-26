@@ -22,7 +22,7 @@ namespace CarRental
         public RentalDialog()
         {
             InitializeComponent();
-            FetchRecord();
+            //FetchRecord();
             
         }
 
@@ -34,6 +34,11 @@ namespace CarRental
         }
 
         private void LvCarsOnRent_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void btnUpdateCar_Click(object sender, RoutedEventArgs e)
         {
 
         }
