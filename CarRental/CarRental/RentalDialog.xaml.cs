@@ -34,16 +34,13 @@ namespace CarRental
             FetchRecord();
         }
 
-
         // Choose an Existent client from a list
         private void btnChooseClient_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             ClientsDialog clients = new ClientsDialog();
             clients.ShowDialog();
-
         }
-
 
         // Save Rental
         private void btnSaveRental_Click(object sender, RoutedEventArgs e)
@@ -52,7 +49,7 @@ namespace CarRental
             try
             {
                 currCar = (Car)cmbCars.SelectedItem;
-
+                //save the values in Rental table        
                 Rental rental = new Rental
                 {
                     CarId = currCar.CarId,
@@ -61,21 +58,30 @@ namespace CarRental
                     ReturnDate = dpReturnDate.SelectedDate.Value,
                     TotalFee = float.Parse(lblTotalFess.Content.ToString())
                 };
-
                 Global.context.Rentals.Add(rental);
                 Global.context.SaveChanges();
-                ClearInputs();
+
+                //now make the status of that car in Cars class to false
+                Car result = (from c in Global.context.Cars
+                              where c.CarId == currCar.CarId
+                              select c).SingleOrDefault();
+                result.IsAvailable = false;
+                Global.context.SaveChanges();
+                //clear the inputs and fetch the records again   
                 FetchRecord();
+                MessageBox.Show("Record Added");
             }
             catch (SystemException exc)
             {
                 MessageBox.Show(exc.Message);
             }
+            //ClearInputs();
         }
+
 
         private void LvCarsOnRent_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+           
         }
 
         private void FetchRecord()
@@ -92,13 +98,18 @@ namespace CarRental
 
         private void cmbCars_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-            currCar = (Car)cmbCars.SelectedItem;
-            lblRentalFee.Content = currCar.RentalFee;
-            currCarImage = currCar.Photo;
-            BitmapImage bitmap = Utils.ByteArrayToBitmapImage(currCarImage); // ex: SystemException
-            imageViewer.Source = bitmap;
-            
+            if (cmbCars.SelectedItem.ToString() == "")
+            {
+                return;
+            }
+            else
+            {
+                currCar = (Car)cmbCars.SelectedItem;
+                lblRentalFee.Content = currCar.RentalFee;
+                currCarImage = currCar.Photo;
+                BitmapImage bitmap = Utils.ByteArrayToBitmapImage(currCarImage); // ex: SystemException
+                imageViewer.Source = bitmap;
+            }
         }
 
        
@@ -141,15 +152,14 @@ namespace CarRental
         {
             btnChooseClient.Content = "";
             lblCustomerName.Content = "";
-            cmbCars.Text = "";
+            cmbCars.SelectedItem = "";
             lblRentalFee.Content = "";
-            dpRentalDate.Text = "";
-            dpReturnDate.Text = "";
+            dpRentalDate.SelectedDate = null;
+            dpReturnDate.SelectedDate=null;
             lblTotalFess.Content = "";
             btnUpdateRental.IsEnabled = false;
             btnClose.IsEnabled = false;
             imageViewer.Source = null;
         }
-
     }
 }

@@ -26,7 +26,7 @@ namespace CarRental
         public CarDialog()
         {
             InitializeComponent();
-           // FetchRecord();
+            FetchRecord();
         }
         private void FetchRecord()
         {
