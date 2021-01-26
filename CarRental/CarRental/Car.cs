@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -47,7 +48,7 @@ namespace CarRental
         public byte[] Photo { get; set; }
 
         //Single Field- always eagerly loaded
-        public virtual Rental Rentals { get; set; }
+        public virtual ICollection<Rental> Rentals { get; set; }
 
         public override string ToString()
         {

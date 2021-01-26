@@ -35,7 +35,7 @@ namespace CarRental
         public string Phone { get; set; }
         public string Email { get; set; }
 
-        public virtual Rental Rentals { get; set; }
+        public virtual ICollection<Rental> Rentals { get; set; }
 
         public override string ToString()
         {

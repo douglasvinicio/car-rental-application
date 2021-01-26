@@ -12,7 +12,7 @@ namespace CarRental
     public class Rental
     {
         [Key]
-        public int RentId { get; set; }    
+        public int RentalId { get; set; }    
         
         public int CarId { get; set; }
 
@@ -28,8 +28,15 @@ namespace CarRental
         
         public string RentalStatus { get; set; }
 
+
+
+        [ForeignKey("CarId")]
+        public virtual Car Car { get; set; }
         public virtual ICollection<Car> Cars { get; set; }
 
+
+        [ForeignKey("CustomerId")]
+        public virtual Customer Customer { get; set; }
         public virtual ICollection<Customer> Customers { get; set; }
     }
 }
