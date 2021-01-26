@@ -11,7 +11,8 @@ namespace CarRental
 {
     class CarsDatabaseContext : DbContext
     {
-        const string DbName = "rentalcardatabase.mdf";
+        const string DbName = "rentalcardatabase3.mdf";
+        //const string DbName = "CarRentalDatabase.mdf";
 
         static string DbPath = Path.Combine(Environment.CurrentDirectory, DbName);
         public CarsDatabaseContext() : base($@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={DbPath};Integrated Security=True;Connect Timeout=30")

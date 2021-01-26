@@ -24,8 +24,10 @@ namespace CarRental
         [Required]
         public DateTime ReturnDate { get; set; }
 
+
         public int Discount { get; set; }
-        
+
+        public float TotalFee { get; set; }
         public string RentalStatus { get; set; }
 
 
