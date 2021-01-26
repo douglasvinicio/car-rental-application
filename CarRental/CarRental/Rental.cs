@@ -14,10 +14,8 @@ namespace CarRental
         [Key]
         public int RentId { get; set; }    
         
-        [ForeignKey("Car")]
         public int CarId { get; set; }
 
-        [ForeignKey("Customer")]
         public int CustomerId { get; set; }
 
         [Required]
@@ -30,5 +28,8 @@ namespace CarRental
         
         public string RentalStatus { get; set; }
 
+        public virtual Car Car { get; set; }
+
+        public virtual Customer Customer { get; set; }
     }
 }

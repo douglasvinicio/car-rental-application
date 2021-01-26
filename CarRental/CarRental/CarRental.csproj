@@ -79,12 +79,6 @@
     <Compile Include="RentalDialog.xaml.cs">
       <DependentUpon>RentalDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RentalReturns.xaml.cs">
-      <DependentUpon>RentalReturns.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ReturnsDialog.xaml.cs">
-      <DependentUpon>ReturnsDialog.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Utils.cs" />
     <Page Include="CarDialog.xaml">
       <SubType>Designer</SubType>
@@ -122,14 +116,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="RentalDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RentalReturns.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ReturnsDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -19,18 +19,46 @@ namespace CarRental
     /// </summary>
     public partial class RentalDialog : Window
     {
-        public RentalDialog()
+        Customer currCustomer;
+        Car currCar;
+
+        public RentalDialog(Customer customer)
         {
             InitializeComponent();
-            //FetchRecord();
-            
+            // Assigning Customer Object to currCustomer
+            currCustomer = customer;
+            lblCustomerName.Content = currCustomer.Name;
+            FetchRecord();
         }
 
-        private void FetchRecord()
+
+        // Choose an Existent client from a list
+        private void btnChooseClient_Click(object sender, RoutedEventArgs e)
         {
-            cmbCarReg.ItemsSource = Global.context.Cars.ToList();
-            LvCarsOnRent.ItemsSource = Global.context.Cars.ToList();
-            //lblNumOfCars.Content = LvCarsDialog.Items.Count;
+            this.Close();
+            ClientsDialog clients = new ClientsDialog();
+            clients.ShowDialog();
+
+        }
+
+
+        // Save Rental
+        private void btnSaveRental_Click(object sender, RoutedEventArgs e)
+        {
+            currCar = (Car)cmbCars.SelectedItem;
+
+            Rental rental = new Rental
+            {
+                CarId = currCar.CarId,
+                CustomerId = currCustomer.CustomerId,
+                RentalDate = dpRentalDate.SelectedDate.Value,
+                ReturnDate = dpReturnDate.SelectedDate.Value
+            };
+
+            Global.context.Rentals.Add(rental);
+            Global.context.SaveChanges();
+
+            FetchRecord();
         }
 
         private void LvCarsOnRent_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -38,8 +66,16 @@ namespace CarRental
 
         }
 
-        private void btnUpdateCar_Click(object sender, RoutedEventArgs e)
+        private void FetchRecord()
         {
+            cmbCars.ItemsSource = Global.context.Cars.ToList();
+            LvCarsOnRent.ItemsSource = Global.context.Rentals.ToList();
+            //lblNumOfCars.Content = LvCarsDialog.Items.Count;
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            FetchRecord();
 
         }
     }

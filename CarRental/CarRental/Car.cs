@@ -53,7 +53,7 @@ namespace CarRental
 
         public override string ToString()
         {
-            return $"{CarId}, {RegNum},{Make},{Model},{CarYear}{CarCategory}{PassengerCapacity}{AutoTransmission}{RentalFee}{BluetoothConn}{IsAvailable},{Photo}";
+            return string.Format("{0} {1}, {2}", Make, Model, CarYear );
         }
     }
 }

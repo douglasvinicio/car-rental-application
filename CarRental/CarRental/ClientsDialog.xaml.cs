@@ -78,5 +78,12 @@ namespace CarRental
             LoadData();
         }
 
+        private void LvClientDialog_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Customer customer = (Customer)LvClientDialog.SelectedItem;
+            RentalDialog rentalDialog = new RentalDialog(customer);
+            this.Close();
+            rentalDialog.ShowDialog();
+        }
     }
 }
