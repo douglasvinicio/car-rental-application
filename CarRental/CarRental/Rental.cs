@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace CarRental
 {
     [Table("Rental")]
-    class Rental
+    public class Rental
     {
         [Key]
         public int RentId { get; set; }    
@@ -28,8 +28,8 @@ namespace CarRental
         
         public string RentalStatus { get; set; }
 
-        public virtual Car Car { get; set; }
+        public virtual ICollection<Car> Cars { get; set; }
 
-        public virtual Customer Customer { get; set; }
+        public virtual ICollection<Customer> Customers { get; set; }
     }
 }

@@ -62,9 +62,9 @@
                     <GridViewColumn Header=" Client Name " Width="100" DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header=" Make " Width="80" DisplayMemberBinding="{Binding Make}"/>
                     <GridViewColumn Header=" Model " Width="100" DisplayMemberBinding="{Binding Model}" />
-                    <GridViewColumn Header=" Year " Width="50" DisplayMemberBinding="{Binding CarYear}" />
-                    <GridViewColumn Header=" Category " Width="80" DisplayMemberBinding="{Binding CarCategory}" />
-                    <GridViewColumn Header=" Capacity " Width="60" DisplayMemberBinding="{Binding PassCapacity}" />
+                    <GridViewColumn Header=" Year " Width="50" DisplayMemberBinding="{Binding RentalDate}" />
+                    <GridViewColumn Header=" Category " Width="80" DisplayMemberBinding="{Binding ReturnDate}" />
+                    <GridViewColumn Header=" Capacity " Width="60" DisplayMemberBinding="{Binding PassengerCapacity}" />
                     <GridViewColumn Header=" Automatic" Width="110" DisplayMemberBinding="{Binding AutoTransmission}" />
                     <GridViewColumn Header=" Rental Fee " Width="60" DisplayMemberBinding="{Binding RentalFee}" />
                     <GridViewColumn Header=" Bluetooth" Width="100" DisplayMemberBinding="{Binding Bluetooth}" />

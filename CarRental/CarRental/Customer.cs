@@ -35,11 +35,8 @@ namespace CarRental
         public string Phone { get; set; }
         public string Email { get; set; }
 
+        public virtual Rental Rentals { get; set; }
 
-        public Customer()
-        {
-
-        }
         public override string ToString()
         {
             return $"{CustomerId}, {Name},{Address},{City},{State},{Country},{Email},{Phone}";

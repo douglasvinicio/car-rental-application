@@ -69,7 +69,7 @@ namespace CarRental
         private void FetchRecord()
         {
             cmbCars.ItemsSource = Global.context.Cars.ToList();
-            LvCarsOnRent.ItemsSource = Global.context.Rentals.ToList();
+            LvCarsOnRent.ItemsSource = Global.context.Rentals.Include("Car").Include("Customer").ToList();
             //lblNumOfCars.Content = LvCarsDialog.Items.Count;
         }
 

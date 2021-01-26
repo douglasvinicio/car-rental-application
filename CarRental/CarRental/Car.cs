@@ -7,8 +7,6 @@ namespace CarRental
     [Table("Car")]
     public class Car
     {
-
-        //add the columns
         [Key]
         public int CarId { get; set; }
 
@@ -49,7 +47,7 @@ namespace CarRental
         public byte[] Photo { get; set; }
 
         //Single Field- always eagerly loaded
-        //public virtual Car car { set; get; }
+        public virtual Rental Rentals { get; set; }
 
         public override string ToString()
         {
