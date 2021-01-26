@@ -12,7 +12,7 @@
             <ColumnDefinition Width="5" />
             <ColumnDefinition Width="820" />
         </Grid.ColumnDefinitions>
-        
+
         <StackPanel Margin="10,10,26.2,0" Height="450" VerticalAlignment="Top">
             <StackPanel Margin="20,20,0,0">
                 <StackPanel Margin="0,5,0,0" Height="Auto" Width="Auto" Orientation="Horizontal">
@@ -25,11 +25,11 @@
                 </StackPanel>
                 <StackPanel Margin="0,10,0,0" Height="Auto" Width="Auto" Orientation="Horizontal">
                     <Label Height="25.96" Width="126" FontSize="14">Car</Label>
-                    <ComboBox Name="cmbCars" Height="25" Width="250" />
+                    <ComboBox Name="cmbCars" Height="25" Width="250" SelectionChanged="cmbCars_SelectionChanged" />
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
-                    <Label Height="25.96" Width="126" FontSize="14">Rental Fee</Label>
-                    <Label Content="...." Name="txtRentalFee" Height="25" Width="250" />
+                    <Label Height="25.96" Width="126" FontSize="14">Fees Per Day</Label>
+                    <Label Content="...." Name="lblRentalFee" Height="25" Width="250" />
                 </StackPanel>
             </StackPanel>
             <StackPanel Margin="20,0,0,0" >
@@ -39,7 +39,11 @@
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
                     <Label Height="25.96" Width="126" FontSize="14">Return Date</Label>
-                    <DatePicker Name="dpReturnDate" Height="25" Width="250" />
+                    <DatePicker Name="dpReturnDate" Height="25" Width="250" SelectedDateChanged="returnDateSelectionChange"  />
+                </StackPanel>
+                <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
+                    <Label Height="25.96" Width="126" FontSize="14">Total Fees</Label>
+                    <Label Content="...." Name="lblTotalFess" Height="25" Width="250" />
                 </StackPanel>
             </StackPanel>
 
@@ -48,14 +52,16 @@
                 <Button Name="btnUpdateRental" Margin="10,20,0,0" Content=" Update " Width="75" IsEnabled="False"/>
                 <Button Name="btnClose" Margin="10,20,0,0" Content=" Close " Width="84" IsEnabled="False"/>
             </StackPanel>
-            <StackPanel Height="220" Margin="0,0,0.2,0">
-                <Label Content="Total number of Cars:" HorizontalAlignment="Left" Margin="40,40,0,0" VerticalAlignment="Top" Width="184" FontSize="14"/>
-                <Label Content="Cars Rented :" HorizontalAlignment="Left" Margin="40,20,0,0" VerticalAlignment="Top" Width="184" FontSize="14"/>
-                <Label Content="Cars Available :" HorizontalAlignment="Left" Margin="40,20,0,0" VerticalAlignment="Top" Width="184" FontSize="14"/>
+            <StackPanel Height="238" Margin="0,0,-0.8,0">
+                    <Grid Width="296" Height="167">
+                        <TextBlock x:Name="tbImage" Text="Click to pick picture" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Image x:Name="imageViewer" Stretch="UniformToFill" Margin="10,10,10,34" />
+                    </Grid>
+                
             </StackPanel>
         </StackPanel>
         <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
-        
+
         <ListView Name="LvCarsOnRent" HorizontalAlignment="Left" Height="394" Margin="10,66,0,0" VerticalAlignment="Top" Width="800"  Grid.Column="2" SelectionChanged="LvCarsOnRent_SelectionChanged">
             <ListView.View>
                 <GridView>
@@ -65,14 +71,19 @@
                     <GridViewColumn Header=" Year " Width="50" DisplayMemberBinding="{Binding Car.Year}" />
                     <GridViewColumn Header=" Pick Up " Width="auto" DisplayMemberBinding="{Binding RentalDate}" />
                     <GridViewColumn Header=" Return Date " Width="auto" DisplayMemberBinding="{Binding ReturnDate}" />
-                    <GridViewColumn Header=" Rental Fee " Width="auto" DisplayMemberBinding="{Binding Car.RentalFee}" />
+                    <GridViewColumn Header=" Rental Fee " Width="auto" DisplayMemberBinding="{Binding TotalFee}" />
                     <GridViewColumn Header=" Days " Width="40" DisplayMemberBinding="{Binding Days}" />
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label Name="lblNumOfCars" Content="..." HorizontalAlignment="Left" Margin="223,292,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.188,-0.912" Width="21"/>
-        <Label x:Name="lblNumOfCarsOnRent" Content="..." HorizontalAlignment="Left" Margin="223,346,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.188,-0.912" Width="21"/>
-        <Label x:Name="lblNumOfCarsReturned" Content="..." HorizontalAlignment="Left" Margin="223,385,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.188,-0.912" Width="21"/>
+        <Label Content="Total number of Cars:" HorizontalAlignment="Left" Margin="30,465,0,0" VerticalAlignment="Top" Width="184" FontSize="14" Grid.Column="2"/>
+        <Label Name="lblNumOfCars" Content="..." HorizontalAlignment="Left" Margin="193,461,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.188,-0.912" Width="21" Grid.Column="2"/>
+        <Label Content="Cars Rented :" HorizontalAlignment="Left" Margin="247,469,0,0" VerticalAlignment="Top" Width="130" FontSize="14" Grid.Column="2" Height="30"/>
+        <Label x:Name="lblNumOfCarsOnRent" Content="..." HorizontalAlignment="Left" Margin="382,465,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.188,-0.912" Width="21" Grid.Column="2"/>
+        <Label Content="Cars Available :" HorizontalAlignment="Left" Margin="467,470,0,0" VerticalAlignment="Top" Width="144" FontSize="14" Grid.Column="2" Height="29"/>
+        <Label x:Name="lblNumOfCarsReturned" Content="..." HorizontalAlignment="Left" Margin="611,469,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.188,-0.912" Width="21" Grid.Column="2"/>
+
+
         <ComboBox FontWeight="Bold" FontSize="16" Grid.Column="2" HorizontalAlignment="Left" Margin="315,24,0,0" VerticalAlignment="Top" Width="191">
             <ComboBoxItem IsSelected="True">Currently Rented</ComboBoxItem>
             <ComboBoxItem>Past Rentals</ComboBoxItem>
