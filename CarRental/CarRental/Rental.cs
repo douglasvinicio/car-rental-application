@@ -28,6 +28,10 @@ namespace CarRental
 
         public int TotalDays { get; set; }
 
+        //public string Status {get; set; }
+
+        //public string Comments { get; set; }
+
         [NotMapped]
         public float Fine { get; set; }
 

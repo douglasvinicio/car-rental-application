@@ -51,22 +51,20 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,0,-0.8,0" Height="49">
-                <Button Click="btnSaveRental_Click" Name="btnSaveRental" Margin="105,20,0,0" Content=" Save " Width="75" />
-                <Button Name="btnUpdateRental" Margin="10,20,0,0" Content=" Update " Width="75" IsEnabled="False"/>
-                <Button Name="btnClose" Margin="10,20,0,0" Content=" Close " Width="84" IsEnabled="False"/>
+                <Button Click="btnSaveRental_Click" x:Name="btnSaveRental" Margin="150,20,0,0" Content=" Rent " Width="115" />
             </StackPanel>
             <StackPanel Height="238" Margin="0,0,-0.8,0">
-                    <Grid Width="296" Height="167">
-                        <TextBlock x:Name="tbImage" Text="Click to pick picture" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <Image x:Name="imageViewer" Stretch="UniformToFill" Margin="10,10,10,34" />
-                    </Grid>
-                
+                <Grid Width="296" Height="167">
+                    <TextBlock x:Name="tbImage" Text="" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <Image x:Name="imageViewer" Stretch="UniformToFill" Margin="10" />
+                </Grid>
+
             </StackPanel>
         </StackPanel>
         <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
         <TabControl Grid.Column="2" Margin="5,0,0,0.2">
             <TabItem Header="All Rentals">
-                <ListView Name="lvAllRentals" HorizontalAlignment="Left" Height="394" Margin="10,66,0,0" VerticalAlignment="Top" Width="800"  Grid.Column="2" SelectionChanged="LvCarsOnRent_SelectionChanged">
+                <ListView Name="lvAllRentals" HorizontalAlignment="Left" Height="449" Margin="10,11,-1,0" VerticalAlignment="Top" Width="800"  Grid.Column="2" SelectionChanged="LvCarsOnRent_SelectionChanged">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header=" Client Name " Width="100" DisplayMemberBinding="{Binding Customer.Name}" />
@@ -77,36 +75,37 @@
                             <GridViewColumn Header=" Return Date " Width="auto" DisplayMemberBinding="{Binding ReturnDate,StringFormat=d}" />
                             <GridViewColumn Header=" Rental Fee " Width="auto" DisplayMemberBinding="{Binding TotalFee}" />
                             <GridViewColumn Header=" Days " Width="40" DisplayMemberBinding="{Binding TotalDays}" />
+                            <GridViewColumn Header=" Comments " Width="auto" DisplayMemberBinding="{Binding Comments}" />
                         </GridView>
                     </ListView.View>
                 </ListView>
             </TabItem>
             <TabItem Header="Rented">
-                    <ListView Name="lvRented" HorizontalAlignment="Left" Height="394" Margin="10,66,0,0" VerticalAlignment="Top" Width="800"  Grid.Column="2" SelectionChanged="LvCarsOnRent_SelectionChanged">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header=" Client Name " Width="100" DisplayMemberBinding="{Binding Customer.Name}" />
-                                <GridViewColumn Header=" Make " Width="80" DisplayMemberBinding="{Binding Car.Make}"/>
-                                <GridViewColumn Header=" Model " Width="100" DisplayMemberBinding="{Binding Car.Model}" />
-                                <GridViewColumn Header=" Year " Width="50" DisplayMemberBinding="{Binding Car.Year}" />
-                                <GridViewColumn Header=" Pick Up " Width="auto" DisplayMemberBinding="{Binding RentalDate}" />
-                                <GridViewColumn Header=" Return Date " Width="auto" DisplayMemberBinding="{Binding ReturnDate}" />
-                                <GridViewColumn Header=" Rental Fee " Width="auto" DisplayMemberBinding="{Binding TotalFee}" />
-                                <GridViewColumn Header=" Days " Width="40" DisplayMemberBinding="{Binding Days}" />
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </TabItem>
-                <TabItem Header="Returned">
-                <ListView Name="lvReturned" HorizontalAlignment="Left" Height="394" Margin="10,66,0,0" VerticalAlignment="Top" Width="800"  Grid.Column="2" SelectionChanged="LvCarsOnRent_SelectionChanged">
+                <ListView Name="lvRented" HorizontalAlignment="Left" Height="450" Margin="10,10,-1,0" VerticalAlignment="Top" Width="800"  Grid.Column="2" SelectionChanged="LvCarsOnRent_SelectionChanged">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header=" Client Name " Width="100" DisplayMemberBinding="{Binding Customer.Name}" />
                             <GridViewColumn Header=" Make " Width="80" DisplayMemberBinding="{Binding Car.Make}"/>
                             <GridViewColumn Header=" Model " Width="100" DisplayMemberBinding="{Binding Car.Model}" />
                             <GridViewColumn Header=" Year " Width="50" DisplayMemberBinding="{Binding Car.Year}" />
-                            <GridViewColumn Header=" Pick Up " Width="auto" DisplayMemberBinding="{Binding RentalDate}" />
-                            <GridViewColumn Header=" Return Date " Width="auto" DisplayMemberBinding="{Binding ReturnDate}" />
+                            <GridViewColumn Header=" Pick Up " Width="auto" DisplayMemberBinding="{Binding RentalDate,StringFormat=d}" />
+                            <GridViewColumn Header=" Return Date " Width="auto" DisplayMemberBinding="{Binding ReturnDate,StringFormat=d}" />
+                            <GridViewColumn Header=" Rental Fee " Width="auto" DisplayMemberBinding="{Binding TotalFee}" />
+                            <GridViewColumn Header=" Days " Width="40" DisplayMemberBinding="{Binding Days}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+            <TabItem Header="Returned">
+                <ListView Name="lvReturned" HorizontalAlignment="Left" Height="450" Margin="10,10,-1,0" VerticalAlignment="Top" Width="800"  Grid.Column="2" SelectionChanged="LvCarsOnRent_SelectionChanged">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header=" Client Name " Width="100" DisplayMemberBinding="{Binding Customer.Name}" />
+                            <GridViewColumn Header=" Make " Width="80" DisplayMemberBinding="{Binding Car.Make}"/>
+                            <GridViewColumn Header=" Model " Width="100" DisplayMemberBinding="{Binding Car.Model}" />
+                            <GridViewColumn Header=" Year " Width="50" DisplayMemberBinding="{Binding Car.Year}" />
+                            <GridViewColumn Header=" Pick Up " Width="auto" DisplayMemberBinding="{Binding RentalDate,StringFormat=d}" />
+                            <GridViewColumn Header=" Return Date " Width="auto" DisplayMemberBinding="{Binding ReturnDate,StringFormat=d}" />
                             <GridViewColumn Header=" Rental Fee " Width="auto" DisplayMemberBinding="{Binding TotalFee}" />
                             <GridViewColumn Header=" Days " Width="40" DisplayMemberBinding="{Binding Days}" />
                         </GridView>
@@ -114,15 +113,15 @@
                 </ListView>
             </TabItem>
             <TabItem Header="Future Rentals">
-                <ListView Name="lvFutureRentals" HorizontalAlignment="Left" Height="394" Margin="10,66,0,0" VerticalAlignment="Top" Width="800"  Grid.Column="2" SelectionChanged="LvCarsOnRent_SelectionChanged">
+                <ListView Name="lvFutureRentals" HorizontalAlignment="Left" Height="45" Margin="10,9,-1,0" VerticalAlignment="Top" Width="800"  Grid.Column="2" SelectionChanged="LvCarsOnRent_SelectionChanged">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header=" Client Name " Width="100" DisplayMemberBinding="{Binding Customer.Name}" />
                             <GridViewColumn Header=" Make " Width="80" DisplayMemberBinding="{Binding Car.Make}"/>
                             <GridViewColumn Header=" Model " Width="100" DisplayMemberBinding="{Binding Car.Model}" />
                             <GridViewColumn Header=" Year " Width="50" DisplayMemberBinding="{Binding Car.Year}" />
-                            <GridViewColumn Header=" Pick Up " Width="auto" DisplayMemberBinding="{Binding RentalDate}" />
-                            <GridViewColumn Header=" Return Date " Width="auto" DisplayMemberBinding="{Binding ReturnDate}" />
+                            <GridViewColumn Header=" Pick Up " Width="auto" DisplayMemberBinding="{Binding RentalDate,StringFormat=d}" />
+                            <GridViewColumn Header=" Return Date " Width="auto" DisplayMemberBinding="{Binding ReturnDate,StringFormat=d}" />
                             <GridViewColumn Header=" Rental Fee " Width="auto" DisplayMemberBinding="{Binding TotalFee}" />
                             <GridViewColumn Header=" Days " Width="40" DisplayMemberBinding="{Binding Days}" />
                         </GridView>
@@ -130,12 +129,16 @@
                 </ListView>
             </TabItem>
         </TabControl>
-        <Label Content="Total number of Cars:" HorizontalAlignment="Left" Margin="30,465,0,0" VerticalAlignment="Top" Width="184" FontSize="14" Grid.Column="2"/>
-        <Label Name="lblNumOfCars" Content="..." HorizontalAlignment="Left" Margin="193,461,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.188,-0.912" Width="21" Grid.Column="2"/>
-        <Label Content="Cars Rented :" HorizontalAlignment="Left" Margin="247,469,0,0" VerticalAlignment="Top" Width="130" FontSize="14" Grid.Column="2" Height="30"/>
-        <Label x:Name="lblNumOfCarsOnRent" Content="..." HorizontalAlignment="Left" Margin="382,465,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.188,-0.912" Width="21" Grid.Column="2"/>
-        <Label Content="Cars Available :" HorizontalAlignment="Left" Margin="467,470,0,0" VerticalAlignment="Top" Width="144" FontSize="14" Grid.Column="2" Height="29"/>
-        <Label x:Name="lblNumOfCarsReturned" Content="..." HorizontalAlignment="Left" Margin="611,469,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.188,-0.912" Width="21" Grid.Column="2"/>
+
+        <Label Content="Total number of Cars:" HorizontalAlignment="Left" Margin="21,496,0,0" VerticalAlignment="Top" Width="142" FontSize="14" Grid.Column="2"/>
+        <Label Name="lblNumOfCars" Content="..." HorizontalAlignment="Left" Margin="167,490,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.188,-0.912" Width="21" Grid.Column="2"/>
+        <Label Content="Cars Rented :" HorizontalAlignment="Left" Margin="195,496,0,0" VerticalAlignment="Top" Width="130" FontSize="14" Grid.Column="2" Height="30"/>
+        <Label x:Name="lblNumOfCarsOnRent" Content="..." HorizontalAlignment="Left" Margin="289,490,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.188,-0.912" Width="21" Grid.Column="2"/>
+        <Label Content="Cars Available :" HorizontalAlignment="Left" Margin="325,497,0,0" VerticalAlignment="Top" Width="144" FontSize="14" Grid.Column="2" Height="29"/>
+        <Label x:Name="lblNumOfCarsAvailable" Content="..." HorizontalAlignment="Left" Margin="433,492,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.188,-0.912" Width="22" Grid.Column="2"/>
+        <Grid Grid.Column="2" HorizontalAlignment="Left" Height="30" Margin="460,496,0,0" VerticalAlignment="Top" Width="350">
+            <Button Click="btnFinalizeOrder_Click" Name="btnFinalizeOrder" Content="Finalize Rental" HorizontalAlignment="Left" Margin="256,0,0,0" VerticalAlignment="Top" Width="94" Height="30"/>
+        </Grid>
     </Grid>
 </Window>
 

@@ -77,17 +77,17 @@ namespace CarRental
 
         private void cmbCars_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cmbCars.SelectedItem.ToString() == "")
-            {
-                return;
-            }
-            else
+            if (cmbCars.SelectedItem != null)
             {
                 currCar = (Car)cmbCars.SelectedItem;
                 lblRentalFee.Content = currCar.RentalFee;
                 currCarImage = currCar.Photo;
                 BitmapImage bitmap = Utils.ByteArrayToBitmapImage(currCarImage); // ex: SystemException
                 imageViewer.Source = bitmap;
+            }
+            else
+            {
+                return;
             }
         }
 
@@ -142,8 +142,6 @@ namespace CarRental
             dpRentalDate.SelectedDate = null;
             dpReturnDate.SelectedDate=null;
             lblTotalFess.Content = "";
-            btnUpdateRental.IsEnabled = false;
-            btnClose.IsEnabled = false;
             imageViewer.Source = null;
         }
 
@@ -166,6 +164,11 @@ namespace CarRental
 
             // Showing only available to rent cars on ComboBox
             cmbCars.ItemsSource = Global.context.Cars.Where(a => a.IsAvailable == true).ToList();
+
+            //Populating Labels 
+            lblNumOfCars.Content = Global.context.Cars.Count();
+            lblNumOfCarsOnRent.Content = Global.context.Cars.Where(a => a.IsAvailable == false).Count();
+            lblNumOfCarsAvailable.Content = Global.context.Cars.Where(a => a.IsAvailable == true).Count();
         }
 
         private void Window_Activated(object sender, EventArgs e)
@@ -173,9 +176,22 @@ namespace CarRental
             FetchRecord();
         }
 
-        private void cmbRentalStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void btnFinalizeOrder_Click(object sender, RoutedEventArgs e)
         {
-            
+            Rental rentalFinalize = (Rental)lvReturned.SelectedItem;
+            //rentalFinalize.Status = "Done";
+
+            //Making Car.IsAvailable field false if rented.
+            Car result = (from c in Global.context.Cars
+                          where c.CarId == rentalFinalize.CarId
+                          select c).SingleOrDefault();
+
+
+            result.IsAvailable = true;
+
+            Global.context.SaveChanges();
+            MessageBox.Show("Rental order created with success!");
+
         }
     }
 }
