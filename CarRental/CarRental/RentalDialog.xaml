@@ -64,7 +64,7 @@
         <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
         <TabControl Grid.Column="2" Margin="5,0,0,0.2">
             <TabItem Header="All Rentals">
-                <ListView Name="lvAllRentals" HorizontalAlignment="Left" Height="449" Margin="10,11,-1,0" VerticalAlignment="Top" Width="800"  Grid.Column="2" SelectionChanged="LvCarsOnRent_SelectionChanged">
+                <ListView Name="lvAllRentals" HorizontalAlignment="Left" Height="449" Margin="10,11,-1,0" VerticalAlignment="Top" Width="800"  Grid.Column="2">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header=" Client Name " Width="100" DisplayMemberBinding="{Binding Customer.Name}" />
@@ -82,7 +82,7 @@
                 </ListView>
             </TabItem>
             <TabItem Header="Rented">
-                <ListView Name="lvRented" HorizontalAlignment="Left" Height="450" Margin="10,10,-1,0" VerticalAlignment="Top" Width="800"  Grid.Column="2" SelectionChanged="LvCarsOnRent_SelectionChanged">
+                <ListView Name="lvRented" HorizontalAlignment="Left" Height="450" Margin="10,10,-1,0" VerticalAlignment="Top" Width="800"  Grid.Column="2">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header=" Client Name " Width="100" DisplayMemberBinding="{Binding Customer.Name}" />
@@ -100,7 +100,7 @@
                 </ListView>
             </TabItem>
             <TabItem Header="Returned">
-                <ListView Name="lvReturned" HorizontalAlignment="Left" Height="450" Margin="10,10,-1,0" VerticalAlignment="Top" Width="800"  Grid.Column="2" SelectionChanged="LvCarsOnRent_SelectionChanged">
+                <ListView Name="lvReturned" HorizontalAlignment="Left" Height="450" Margin="10,10,-1,0" VerticalAlignment="Top" Width="800"  Grid.Column="2">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header=" Client Name " Width="100" DisplayMemberBinding="{Binding Customer.Name}" />
@@ -118,7 +118,7 @@
                 </ListView>
             </TabItem>
             <TabItem Header="Future Rentals">
-                <ListView Name="lvFutureRentals" HorizontalAlignment="Left" Height="451" Margin="10,9,-1,0" VerticalAlignment="Top" Width="800"  Grid.Column="2" SelectionChanged="LvCarsOnRent_SelectionChanged">
+                <ListView Name="lvFutureRentals" HorizontalAlignment="Left" Height="451" Margin="10,9,-1,0" VerticalAlignment="Top" Width="800"  Grid.Column="2">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header=" Client Name " Width="100" DisplayMemberBinding="{Binding Customer.Name}" />
