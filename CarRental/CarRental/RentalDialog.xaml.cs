@@ -75,6 +75,24 @@ namespace CarRental
             }
         }
 
+        private void btnFinalizeOrder_Click(object sender, RoutedEventArgs e)
+        {
+            Rental rentalFinalize = (Rental)lvReturned.SelectedItem;
+            //rentalFinalize.Status = "Done";
+
+            //Making Car.IsAvailable field false if rented.
+            Car result = (from c in Global.context.Cars
+                          where c.CarId == rentalFinalize.CarId
+                          select c).SingleOrDefault();
+
+
+            result.IsAvailable = true;
+
+            Global.context.SaveChanges();
+            MessageBox.Show("Rental order created with success!");
+
+        }
+
         private void cmbCars_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cmbCars.SelectedItem != null)
@@ -89,12 +107,6 @@ namespace CarRental
             {
                 return;
             }
-        }
-
-
-        private void LvCarsOnRent_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
 
         private void returnDateSelectionChange(object sender, SelectionChangedEventArgs e)
@@ -133,18 +145,6 @@ namespace CarRental
             return true;
         }
 
-        public void ClearInputs()
-        {
-            btnChooseClient.Content = "";
-            lblCustomerName.Content = "";
-            cmbCars.SelectedItem = "";
-            lblRentalFee.Content = "";
-            dpRentalDate.SelectedDate = null;
-            dpReturnDate.SelectedDate=null;
-            lblTotalFess.Content = "";
-            imageViewer.Source = null;
-        }
-
         private void FetchRecord()
         {
             //Todays date
@@ -173,25 +173,20 @@ namespace CarRental
 
         private void Window_Activated(object sender, EventArgs e)
         {
+            // When clients is closed fetch data from db again
             FetchRecord();
         }
 
-        private void btnFinalizeOrder_Click(object sender, RoutedEventArgs e)
+        public void ClearInputs()
         {
-            Rental rentalFinalize = (Rental)lvReturned.SelectedItem;
-            //rentalFinalize.Status = "Done";
-
-            //Making Car.IsAvailable field false if rented.
-            Car result = (from c in Global.context.Cars
-                          where c.CarId == rentalFinalize.CarId
-                          select c).SingleOrDefault();
-
-
-            result.IsAvailable = true;
-
-            Global.context.SaveChanges();
-            MessageBox.Show("Rental order created with success!");
-
+            btnChooseClient.Content = "";
+            lblCustomerName.Content = "";
+            cmbCars.SelectedItem = "";
+            lblRentalFee.Content = "";
+            dpRentalDate.SelectedDate = null;
+            dpReturnDate.SelectedDate = null;
+            lblTotalFess.Content = "";
+            imageViewer.Source = null;
         }
     }
 }

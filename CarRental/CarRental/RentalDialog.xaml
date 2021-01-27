@@ -75,7 +75,8 @@
                             <GridViewColumn Header=" Return Date " Width="auto" DisplayMemberBinding="{Binding ReturnDate,StringFormat=d}" />
                             <GridViewColumn Header=" Rental Fee " Width="auto" DisplayMemberBinding="{Binding TotalFee}" />
                             <GridViewColumn Header=" Days " Width="40" DisplayMemberBinding="{Binding TotalDays}" />
-                            <GridViewColumn Header=" Comments " Width="auto" DisplayMemberBinding="{Binding Comments}" />
+                            <GridViewColumn Header=" Status " Width="auto" DisplayMemberBinding="{Binding Status}" />
+                            <GridViewColumn Header=" Comments " Width="auto" DisplayMemberBinding="{Binding Comments}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -92,6 +93,8 @@
                             <GridViewColumn Header=" Return Date " Width="auto" DisplayMemberBinding="{Binding ReturnDate,StringFormat=d}" />
                             <GridViewColumn Header=" Rental Fee " Width="auto" DisplayMemberBinding="{Binding TotalFee}" />
                             <GridViewColumn Header=" Days " Width="40" DisplayMemberBinding="{Binding Days}" />
+                            <GridViewColumn Header=" Status " Width="auto" DisplayMemberBinding="{Binding Status}" />
+                            <GridViewColumn Header=" Comments " Width="auto" DisplayMemberBinding="{Binding Comments}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -108,12 +111,14 @@
                             <GridViewColumn Header=" Return Date " Width="auto" DisplayMemberBinding="{Binding ReturnDate,StringFormat=d}" />
                             <GridViewColumn Header=" Rental Fee " Width="auto" DisplayMemberBinding="{Binding TotalFee}" />
                             <GridViewColumn Header=" Days " Width="40" DisplayMemberBinding="{Binding Days}" />
+                            <GridViewColumn Header=" Status " Width="auto" DisplayMemberBinding="{Binding Status}" />
+                            <GridViewColumn Header=" Comments " Width="auto" DisplayMemberBinding="{Binding Comments}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
             </TabItem>
             <TabItem Header="Future Rentals">
-                <ListView Name="lvFutureRentals" HorizontalAlignment="Left" Height="45" Margin="10,9,-1,0" VerticalAlignment="Top" Width="800"  Grid.Column="2" SelectionChanged="LvCarsOnRent_SelectionChanged">
+                <ListView Name="lvFutureRentals" HorizontalAlignment="Left" Height="451" Margin="10,9,-1,0" VerticalAlignment="Top" Width="800"  Grid.Column="2" SelectionChanged="LvCarsOnRent_SelectionChanged">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header=" Client Name " Width="100" DisplayMemberBinding="{Binding Customer.Name}" />
@@ -124,6 +129,8 @@
                             <GridViewColumn Header=" Return Date " Width="auto" DisplayMemberBinding="{Binding ReturnDate,StringFormat=d}" />
                             <GridViewColumn Header=" Rental Fee " Width="auto" DisplayMemberBinding="{Binding TotalFee}" />
                             <GridViewColumn Header=" Days " Width="40" DisplayMemberBinding="{Binding Days}" />
+                            <GridViewColumn Header=" Status " Width="auto" DisplayMemberBinding="{Binding Status}" />
+                            <GridViewColumn Header=" Comments " Width="auto" DisplayMemberBinding="{Binding Comments}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -137,7 +144,7 @@
         <Label Content="Cars Available :" HorizontalAlignment="Left" Margin="325,497,0,0" VerticalAlignment="Top" Width="144" FontSize="14" Grid.Column="2" Height="29"/>
         <Label x:Name="lblNumOfCarsAvailable" Content="..." HorizontalAlignment="Left" Margin="433,492,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.188,-0.912" Width="22" Grid.Column="2"/>
         <Grid Grid.Column="2" HorizontalAlignment="Left" Height="30" Margin="460,496,0,0" VerticalAlignment="Top" Width="350">
-            <Button Click="btnFinalizeOrder_Click" Name="btnFinalizeOrder" Content="Finalize Rental" HorizontalAlignment="Left" Margin="256,0,0,0" VerticalAlignment="Top" Width="94" Height="30"/>
+            <Button Click="btnFinalizeOrder_Click" Name="btnFinalizeOrder" Content="Finalize Rental Order" HorizontalAlignment="Left" Margin="199,0,0,0" VerticalAlignment="Top" Width="151" Height="30"/>
         </Grid>
     </Grid>
 </Window>
