@@ -24,18 +24,11 @@ namespace CarRental
         [Required]
         public DateTime ReturnDate { get; set; }
 
-
-        public int Discount { get; set; }
-
         public float TotalFee { get; set; }
-        public string RentalStatus { get; set; }
-
-
 
         [ForeignKey("CarId")]
         public virtual Car Car { get; set; }
         public virtual ICollection<Car> Cars { get; set; }
-
 
         [ForeignKey("CustomerId")]
         public virtual Customer Customer { get; set; }
