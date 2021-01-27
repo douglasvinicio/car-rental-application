@@ -90,10 +90,14 @@
 
             </StackPanel>
             <StackPanel Height="276" Margin="0,0,-0.4,0">
-                <Button Name="btnImage" Height="216" Margin="36,50,-0.4,0" Click="btnImage_Click">
+                <Button Name="btnImage" Height="216" Margin="23,50,13,0" Click="btnImage_Click">
                     <Grid Width="336" Height="206">
-                        <TextBlock x:Name="tbImage" Text="Click to pick picture" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <Image Name="imageViewer" Stretch="UniformToFill" Margin="-58,-13,-60,-72" />
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="9*"/>
+                            <RowDefinition Height="197*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="tbImage" Text="Click to pick picture" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="116,86,116,95" Grid.Row="1"/>
+                        <Image Name="imageViewer" Stretch="UniformToFill" Margin="-24,0,-23,0" Grid.RowSpan="2" />
                     </Grid>
                 </Button>
             </StackPanel>
