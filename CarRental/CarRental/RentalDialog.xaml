@@ -68,7 +68,7 @@
         </StackPanel>
         <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
         <TabControl Grid.Column="2" Margin="5,0,0,0.2">
-            <TabItem Header="All Rentals">
+            <TabItem Name="allRentals" Header="All Rentals">
                 <ListView Name="lvAllRentals" HorizontalAlignment="Left" Height="449" Margin="10,11,-1,0" VerticalAlignment="Top" Width="800"  Grid.Column="2">
                     <ListView.View>
                         <GridView>
@@ -86,7 +86,7 @@
                     </ListView.View>
                 </ListView>
             </TabItem>
-            <TabItem Name="tabRented" Header="Rented">
+            <TabItem Name="tabRented" Header="Currently Rented">
                 <ListView Name="lvRented" HorizontalAlignment="Left" Height="450" Margin="10,10,-1,0" VerticalAlignment="Top" Width="800"  Grid.Column="2">
                     <ListView.View>
                         <GridView>
@@ -104,32 +104,14 @@
                     </ListView.View>
                 </ListView>
             </TabItem>
-            <TabItem Name="tabReturned" Header="Returned">
+            <TabItem Name="tabReturned" Header=" Returned / Finalized Rentals ">
                 <ListView Name="lvReturned" HorizontalAlignment="Left" Height="450" Margin="10,10,-1,0" VerticalAlignment="Top" Width="800"  Grid.Column="2">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header=" Client Name " Width="100" DisplayMemberBinding="{Binding Customer.Name}" />
                             <GridViewColumn Header=" Make " Width="80" DisplayMemberBinding="{Binding Car.Make}"/>
                             <GridViewColumn Header=" Model " Width="100" DisplayMemberBinding="{Binding Car.Model}" />
-                            <GridViewColumn Header=" Year " Width="50" DisplayMemberBinding="{Binding Car.Year}" />
-                            <GridViewColumn Header=" Pick Up " Width="auto" DisplayMemberBinding="{Binding RentalDate,StringFormat=d}" />
-                            <GridViewColumn Header=" Return Date " Width="auto" DisplayMemberBinding="{Binding ReturnDate,StringFormat=d}" />
-                            <GridViewColumn Header=" Rental Fee " Width="auto" DisplayMemberBinding="{Binding TotalFee}" />
-                            <GridViewColumn Header=" Days " Width="40" DisplayMemberBinding="{Binding Days}" />
-                            <GridViewColumn Header=" Status " Width="auto" DisplayMemberBinding="{Binding Status}" />
-                            <GridViewColumn Header=" Comments " Width="auto" DisplayMemberBinding="{Binding Comments}"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </TabItem>
-            <TabItem Header="Future Rentals">
-                <ListView Name="lvFutureRentals" HorizontalAlignment="Left" Height="451" Margin="10,9,-1,0" VerticalAlignment="Top" Width="800"  Grid.Column="2">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header=" Client Name " Width="100" DisplayMemberBinding="{Binding Customer.Name}" />
-                            <GridViewColumn Header=" Make " Width="80" DisplayMemberBinding="{Binding Car.Make}"/>
-                            <GridViewColumn Header=" Model " Width="100" DisplayMemberBinding="{Binding Car.Model}" />
-                            <GridViewColumn Header=" Year " Width="50" DisplayMemberBinding="{Binding Car.Year}" />
+                            <GridViewColumn Header=" Year " Width="50" DisplayMemberBinding="{Binding Car.CarYear}" />
                             <GridViewColumn Header=" Pick Up " Width="auto" DisplayMemberBinding="{Binding RentalDate,StringFormat=d}" />
                             <GridViewColumn Header=" Return Date " Width="auto" DisplayMemberBinding="{Binding ReturnDate,StringFormat=d}" />
                             <GridViewColumn Header=" Rental Fee " Width="auto" DisplayMemberBinding="{Binding TotalFee}" />

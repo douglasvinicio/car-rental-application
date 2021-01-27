@@ -163,13 +163,10 @@ namespace CarRental
             lvAllRentals.ItemsSource = Global.context.Rentals.ToList();
 
             //Populating Rented
-            lvRented.ItemsSource = Global.context.Rentals.Where(a => a.ReturnDate > thisDay).ToList();
+            lvRented.ItemsSource = Global.context.Rentals.Where(a => a.Status == "Rented").ToList();
 
             //Populating Returned
-            lvReturned.ItemsSource = Global.context.Rentals.Where(a => a.ReturnDate < thisDay).ToList();
-
-            //Populating Future Rentals
-            lvFutureRentals.ItemsSource = Global.context.Rentals.Where(a => a.RentalDate > thisDay).ToList();
+            lvReturned.ItemsSource = Global.context.Rentals.Where(a => a.ReturnDate < thisDay || a.Status == "Finalized" ).ToList();
 
             // Showing only available to rent cars on ComboBox
             cmbCars.ItemsSource = Global.context.Cars.Where(a => a.IsAvailable == true).ToList();

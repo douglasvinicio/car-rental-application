@@ -76,6 +76,9 @@
     </Compile>
     <Compile Include="Class\Employee.cs" />
     <Compile Include="Class\Rental.cs" />
+    <Compile Include="EmployeeDialog.xaml.cs">
+      <DependentUpon>EmployeeDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RentalDialog.xaml.cs">
       <DependentUpon>RentalDialog.xaml</DependentUpon>
     </Compile>
@@ -95,6 +98,10 @@
     <Page Include="Dashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeeDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="LoginDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
