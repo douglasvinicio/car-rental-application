@@ -1,24 +1,12 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace CarRental
 {
-    /// <summary>
-    /// Interaction logic for RentalDialog.xaml
-    /// </summary>
     public partial class RentalDialog : Window
     {
         Customer currCustomer;
@@ -34,7 +22,7 @@ namespace CarRental
             FetchRecord();
         }
 
-        // Choose an Existent client from a list
+        // Choose an existent client from a list
         private void btnChooseClient_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -48,8 +36,10 @@ namespace CarRental
             if (!IsFieldsValid()) { return; }
             try
             {
+                //Assigning car selected on Combobox to currCar
                 currCar = (Car)cmbCars.SelectedItem;
-                //save the values in Rental table        
+
+                //Saving rental order
                 Rental rental = new Rental
                 {
                     CarId = currCar.CarId,
@@ -58,42 +48,28 @@ namespace CarRental
                     ReturnDate = dpReturnDate.SelectedDate.Value,
                     TotalFee = float.Parse(lblTotalFess.Content.ToString())
                 };
+
                 Global.context.Rentals.Add(rental);
                 Global.context.SaveChanges();
 
-                //now make the status of that car in Cars class to false
+                //Making Car.IsAvailable field false if rented.
                 Car result = (from c in Global.context.Cars
                               where c.CarId == currCar.CarId
                               select c).SingleOrDefault();
+
+
                 result.IsAvailable = false;
                 Global.context.SaveChanges();
-                //clear the inputs and fetch the records again   
+                MessageBox.Show("Rental order created with success!");
+
+                //Clear the inputs and fetch the records again   
                 FetchRecord();
-                MessageBox.Show("Record Added");
+
             }
             catch (SystemException exc)
             {
                 MessageBox.Show(exc.Message);
             }
-            //ClearInputs();
-        }
-
-
-        private void LvCarsOnRent_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-           
-        }
-
-        private void FetchRecord()
-        {
-            cmbCars.ItemsSource = Global.context.Cars.ToList();
-            LvCarsOnRent.ItemsSource = Global.context.Rentals.Include("Customer").ToList();
-            //lblNumOfCars.Content = LvCarsDialog.Items.Count;
-        }
-
-        private void Window_Activated(object sender, EventArgs e)
-        {
-            FetchRecord();
         }
 
         private void cmbCars_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -112,13 +88,19 @@ namespace CarRental
             }
         }
 
-       
+
+        private void LvCarsOnRent_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
         private void returnDateSelectionChange(object sender, SelectionChangedEventArgs e)
         {
 
             currCar = (Car)cmbCars.SelectedItem;
             int NumOfDays;
             
+            // Checking if RentalDate is lower then ReturnDate
             if (dpRentalDate.SelectedDate < dpReturnDate.SelectedDate)
             {
                 NumOfDays = (dpReturnDate.SelectedDate - dpRentalDate.SelectedDate).Value.Days;
@@ -160,6 +142,26 @@ namespace CarRental
             btnUpdateRental.IsEnabled = false;
             btnClose.IsEnabled = false;
             imageViewer.Source = null;
+        }
+
+        private void FetchRecord()
+        {
+            // Showing only available to rent cars on ComboBox
+            cmbCars.ItemsSource = Global.context.Cars.Where(a => a.IsAvailable == false).ToList();
+            LvCarsOnRent.ItemsSource = Global.context.Rentals.ToList();
+
+            DateTime thisDay = DateTime.Today;
+            lvPastRentals.ItemsSource = Global.context.Rentals.Where(a => a.ReturnDate < thisDay).ToList();
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            FetchRecord();
+        }
+
+        private void cmbRentalStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
         }
     }
 }

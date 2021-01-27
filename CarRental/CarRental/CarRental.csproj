@@ -82,7 +82,6 @@
     <Compile Include="ReturnDialog.xaml.cs">
       <DependentUpon>ReturnDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Returns.cs" />
     <Compile Include="Utils.cs" />
     <Page Include="CarDialog.xaml">
       <SubType>Designer</SubType>

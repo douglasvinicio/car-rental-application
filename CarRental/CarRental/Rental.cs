@@ -26,6 +26,9 @@ namespace CarRental
 
         public float TotalFee { get; set; }
 
+        [NotMapped]
+        public float Fine { get; set; }
+
         [ForeignKey("CarId")]
         public virtual Car Car { get; set; }
         public virtual ICollection<Car> Cars { get; set; }
