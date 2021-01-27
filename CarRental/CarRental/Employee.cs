@@ -6,21 +6,28 @@ using System.Text;
 
 namespace CarRental
 {
-    class Employee
+    [Table("Employee")]
+    public class Employee
     {
         [Key]
         public int EmployeeID { get; set; }
 
         [Required]
-        [StringLength(30)]
+        //[StringLength(30)]
         public string UserName { get; set; }
 
 
-        [NotMapped]
+        
         public string Password
         {
             get { return Password; }
             set {  Utils.GetPasswordHash(value); }
-        }       
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0};{1};{2}", this.EmployeeID, this.UserName, this.Password);
+        }
+
     }
 }

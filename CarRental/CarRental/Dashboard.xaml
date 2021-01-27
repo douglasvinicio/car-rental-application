@@ -12,8 +12,9 @@
             <Button Click="btnClients_Click" Name="btnClients" Background="Orange" Content="Clients" HorizontalAlignment="Left" Margin="50,30,0,0" VerticalAlignment="Top" Width="67" Height="30"/>
             <Button Name="btnCars" Background="Orange" Content="Cars" HorizontalAlignment="Left" Margin="50,30,0,0" VerticalAlignment="Top" Width="67" Height="30" Click="btnCars_Click"/>
             <Button Background="Orange" Content="Returns" HorizontalAlignment="Left" Margin="50,30,0,0" VerticalAlignment="Top" Width="67" Height="30"/>
-            <Button Background="Orange" Content="Users" HorizontalAlignment="Left" Margin="50,30,0,0" VerticalAlignment="Top" Width="67" Height="30"/>
+            <Button Name="btnUsers" Background="Orange" Content="Users" HorizontalAlignment="Left" Margin="50,30,0,0" VerticalAlignment="Top" Width="67" Height="30" Click="btnUsers_Click"/>
         </StackPanel>
+
         <Image Source="Images/Dashboard-Picture.jpg" HorizontalAlignment="Left" Height="414" Margin="152,10,0,0" VerticalAlignment="Top" Width="644"/>
         <TextBlock HorizontalAlignment="Left" Margin="57,32,0,0" TextWrapping="Wrap" FontWeight="Black" Text="Dashboard" VerticalAlignment="Top"/>
     </Grid>
