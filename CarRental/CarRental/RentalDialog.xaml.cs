@@ -48,8 +48,9 @@ namespace CarRental
                     RentalDate = dpRentalDate.SelectedDate.Value.Date,
                     ReturnDate = dpReturnDate.SelectedDate.Value.Date,
                     TotalFee = float.Parse(lblTotalFess.Content.ToString()),
-                    TotalDays = currNumOfDays
-
+                    TotalDays = currNumOfDays,
+                    Status = "Rented",
+                    Comments = txtComments.Text
                 };
 
                 Global.context.Rentals.Add(rental);
@@ -77,18 +78,22 @@ namespace CarRental
 
         private void btnFinalizeOrder_Click(object sender, RoutedEventArgs e)
         {
-            Rental rentalFinalize = (Rental)lvReturned.SelectedItem;
-            //rentalFinalize.Status = "Done";
+            if (tabRented.IsSelected == true)
+            {
+                Rental rentedFinalize = (Rental)lvRented.SelectedItem;
+                rentedFinalize.Status = "Finalized";
+                CarAvailable(rentedFinalize, true);
+            }
+            if (tabReturned.IsSelected == true)
+            {
+                Rental returnFinalized = (Rental)lvReturned.SelectedItem;
+                returnFinalized.Status = "Finalized";
+                CarAvailable(returnFinalized, true);
+            }
+
 
             //Making Car.IsAvailable field false if rented.
-            Car result = (from c in Global.context.Cars
-                          where c.CarId == rentalFinalize.CarId
-                          select c).SingleOrDefault();
-
-
-            result.IsAvailable = true;
-
-            Global.context.SaveChanges();
+  
             MessageBox.Show("Rental order created with success!");
 
         }
@@ -187,6 +192,18 @@ namespace CarRental
             dpReturnDate.SelectedDate = null;
             lblTotalFess.Content = "";
             imageViewer.Source = null;
+        }
+
+        private void CarAvailable(Rental rental, bool available)
+        {
+            //Making Car.IsAvailable field false if rented.
+            Car result = (from c in Global.context.Cars
+                          where c.CarId == rental.CarId
+                          select c).SingleOrDefault();
+
+            result.IsAvailable = available;
+
+            Global.context.SaveChanges();
         }
     }
 }
