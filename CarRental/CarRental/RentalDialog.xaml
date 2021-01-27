@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarRental"
         mc:Ignorable="d"
-        Title="CarDialog" Height="570.736" Width="1300" Activated="Window_Activated">
+        Title="CarDialog" Height="570.736" Width="1300" Activated="Window_Activated" WindowState="Maximized">
     <Grid Margin="0,0,17.6,0.8" >
         <Grid.ColumnDefinitions >
             <ColumnDefinition Width="*" />

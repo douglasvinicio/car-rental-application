@@ -44,5 +44,10 @@ namespace CarRental
             RentalDialog rentalsDialog = new RentalDialog(customer);
             rentalsDialog.ShowDialog();
         }
+
+        private void btnEmployees_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
