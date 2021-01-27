@@ -79,6 +79,10 @@
     <Compile Include="RentalDialog.xaml.cs">
       <DependentUpon>RentalDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ReturnDialog.xaml.cs">
+      <DependentUpon>ReturnDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Returns.cs" />
     <Compile Include="Utils.cs" />
     <Page Include="CarDialog.xaml">
       <SubType>Designer</SubType>
@@ -116,6 +120,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="RentalDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReturnDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

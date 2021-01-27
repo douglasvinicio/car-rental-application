@@ -49,6 +49,7 @@ namespace CarRental
 
         //Single Field- always eagerly loaded
         public virtual ICollection<Rental> Rentals { get; set; }
+        public virtual ICollection<Rental> Returns { get; set; }
 
         public override string ToString()
         {
