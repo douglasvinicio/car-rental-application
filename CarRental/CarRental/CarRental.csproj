@@ -74,15 +74,12 @@
     <Compile Include="CustomerDialog.xaml.cs">
       <DependentUpon>CustomerDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Employee.cs" />
-    <Compile Include="Rental.cs" />
+    <Compile Include="Class\Employee.cs" />
+    <Compile Include="Class\Rental.cs" />
     <Compile Include="RentalDialog.xaml.cs">
       <DependentUpon>RentalDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ReturnDialog.xaml.cs">
-      <DependentUpon>ReturnDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Utils.cs" />
+    <Compile Include="Class\Utils.cs" />
     <Page Include="CarDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -107,22 +104,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Car.cs" />
-    <Compile Include="CarsDatabaseContext.cs" />
-    <Compile Include="Customer.cs" />
+    <Compile Include="Class\Car.cs" />
+    <Compile Include="Database\CarsDatabaseContext.cs" />
+    <Compile Include="Class\Customer.cs" />
     <Compile Include="Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Global.cs" />
+    <Compile Include="Database\Global.cs" />
     <Compile Include="Index.xaml.cs">
       <DependentUpon>Index.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="RentalDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ReturnDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
