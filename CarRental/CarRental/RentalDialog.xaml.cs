@@ -146,12 +146,23 @@ namespace CarRental
 
         private void FetchRecord()
         {
+            //Todays date
+            DateTime thisDay = DateTime.Today;
+
+            //Populating All Rentals 
+            lvAllRentals.ItemsSource = Global.context.Rentals.ToList();
+
             // Showing only available to rent cars on ComboBox
             cmbCars.ItemsSource = Global.context.Cars.Where(a => a.IsAvailable == false).ToList();
-            LvCarsOnRent.ItemsSource = Global.context.Rentals.ToList();
 
-            DateTime thisDay = DateTime.Today;
-            lvPastRentals.ItemsSource = Global.context.Rentals.Where(a => a.ReturnDate < thisDay).ToList();
+            //Populating Rented
+            lvRented.ItemsSource = Global.context.Rentals.Where(a => a.ReturnDate > thisDay).ToList();
+
+            //Populating Returned
+            lvReturned.ItemsSource = Global.context.Rentals.Where(a => a.ReturnDate < thisDay).ToList();
+
+            //Populating Future Rentals
+            lvFutureRentals.ItemsSource = Global.context.Rentals.Where(a => a.RentalDate > thisDay).ToList();
         }
 
         private void Window_Activated(object sender, EventArgs e)
