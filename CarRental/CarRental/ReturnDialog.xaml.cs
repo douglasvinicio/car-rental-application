@@ -33,6 +33,7 @@ namespace CarRental
             try
             {
                 currRental = (Rental)cmbCarId.SelectedItem;
+                currCar=(Car)cmbCarId.SelectedItem;
                 int  NumOfDays = (dpReturnDate.SelectedDate - currRental.RentalDate).Value.Days;
                 float fine = 50 * NumOfDays;
                 //save the values in Rental table        

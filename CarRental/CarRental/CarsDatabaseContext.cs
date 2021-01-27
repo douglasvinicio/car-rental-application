@@ -34,7 +34,7 @@ namespace CarRental
 
             modelBuilder.Entity<Returns>()
                                        .HasRequired(r => r.Customer)
-                                       .WithMany(p => p.Returns)
+                                       .WithMany(p=> p.Returns)
                                        .HasForeignKey(p => p.CustomerId);
             modelBuilder.Entity<Returns>()
                                         .HasRequired(r => r.Car)
@@ -56,6 +56,6 @@ namespace CarRental
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Rental> Rentals { get; set; }
-        public virtual DbSet<Rental> Returns { get; set; }
+        public virtual DbSet<Returns> Returns { get; set; }
     }
 }
