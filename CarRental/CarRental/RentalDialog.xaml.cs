@@ -56,14 +56,9 @@ namespace CarRental
                 Global.context.Rentals.Add(rental);
                 Global.context.SaveChanges();
 
-                //Making Car.IsAvailable field false if rented.
-                Car result = (from c in Global.context.Cars
-                              where c.CarId == currCar.CarId
-                              select c).SingleOrDefault();
+                // Setting Car.IsAvailable to false
+                CarAvailable(rental, false);
 
-
-                result.IsAvailable = false;
-                Global.context.SaveChanges();
                 MessageBox.Show("Rental order created with success!");
 
                 //Clear the inputs and fetch the records again   
@@ -91,11 +86,7 @@ namespace CarRental
                 CarAvailable(returnFinalized, true);
             }
 
-
-            //Making Car.IsAvailable field false if rented.
-  
             MessageBox.Show("Rental order created with success!");
-
         }
 
         private void cmbCars_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -114,6 +105,7 @@ namespace CarRental
             }
         }
 
+        // Calculating days and total fees on date change
         private void returnDateSelectionChange(object sender, SelectionChangedEventArgs e)
         {
 
@@ -132,6 +124,18 @@ namespace CarRental
                 dpReturnDate.SelectedDate = null;
                 return;
             }
+        }
+
+        private void CarAvailable(Rental rental, bool available)
+        {
+            //Making Car.IsAvailable field false if rented.
+            Car result = (from c in Global.context.Cars
+                          where c.CarId == rental.CarId
+                          select c).SingleOrDefault();
+
+            result.IsAvailable = available;
+
+            Global.context.SaveChanges();
         }
 
         public bool IsFieldsValid()
@@ -192,18 +196,6 @@ namespace CarRental
             dpReturnDate.SelectedDate = null;
             lblTotalFess.Content = "";
             imageViewer.Source = null;
-        }
-
-        private void CarAvailable(Rental rental, bool available)
-        {
-            //Making Car.IsAvailable field false if rented.
-            Car result = (from c in Global.context.Cars
-                          where c.CarId == rental.CarId
-                          select c).SingleOrDefault();
-
-            result.IsAvailable = available;
-
-            Global.context.SaveChanges();
         }
     }
 }
