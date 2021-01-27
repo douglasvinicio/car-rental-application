@@ -44,7 +44,7 @@ namespace CarRental
                     ReturnDate = dpReturnDate.SelectedDate.Value,
                     Fine = fine
                 };
-                Global.context.Returns.Add(returns);
+                //Global.context.Returns.Add(returns);
                 Global.context.SaveChanges();
 
                 //now make the status of that car in Cars class to false

@@ -29,33 +29,11 @@ namespace CarRental
                                         .HasRequired(r => r.Car)
                                         .WithMany(p => p.Rentals)
                                         .HasForeignKey(p => p.CarId);
-
-
-
-            modelBuilder.Entity<Returns>()
-                                       .HasRequired(r => r.Customer)
-                                       .WithMany(p => p.Returns)
-                                       .HasForeignKey(p => p.CustomerId);
-            modelBuilder.Entity<Returns>()
-                                        .HasRequired(r => r.Car)
-                                        .WithMany(p => p.Returns)
-                                        .HasForeignKey(p => p.CarId);
         }
-       /* class RentalConfiguration : EntityTypeConfiguration<Rental>
-        {
 
-            public RentalConfiguration()
-            {
-                this.HasRequired(b => b.Car)
-                    .WithMany(a => a.Rentals);
-            }
-
-        }
-       */
         public virtual DbSet<Car> Cars { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Rental> Rentals { get; set; }
-        public virtual DbSet<Rental> Returns { get; set; }
     }
 }
