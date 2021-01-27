@@ -12,6 +12,7 @@ namespace CarRental
         Customer currCustomer;
         byte[] currCarImage;
         Car currCar;
+        int currNumOfDays;
 
         public RentalDialog(Customer customer)
         {
@@ -44,9 +45,11 @@ namespace CarRental
                 {
                     CarId = currCar.CarId,
                     CustomerId = currCustomer.CustomerId,
-                    RentalDate = dpRentalDate.SelectedDate.Value,
-                    ReturnDate = dpReturnDate.SelectedDate.Value,
-                    TotalFee = float.Parse(lblTotalFess.Content.ToString())
+                    RentalDate = dpRentalDate.SelectedDate.Value.Date,
+                    ReturnDate = dpReturnDate.SelectedDate.Value.Date,
+                    TotalFee = float.Parse(lblTotalFess.Content.ToString()),
+                    TotalDays = currNumOfDays
+
                 };
 
                 Global.context.Rentals.Add(rental);
@@ -98,13 +101,13 @@ namespace CarRental
         {
 
             currCar = (Car)cmbCars.SelectedItem;
-            int NumOfDays;
             
             // Checking if RentalDate is lower then ReturnDate
             if (dpRentalDate.SelectedDate < dpReturnDate.SelectedDate)
             {
-                NumOfDays = (dpReturnDate.SelectedDate - dpRentalDate.SelectedDate).Value.Days;
-                lblTotalFess.Content = (NumOfDays * currCar.RentalFee).ToString();
+                currNumOfDays = (dpReturnDate.SelectedDate - dpRentalDate.SelectedDate).Value.Days;
+                lblTotalFess.Content = (currNumOfDays * currCar.RentalFee).ToString();
+                lblNumOfDays.Content = currNumOfDays;
             }
             else
             {              
@@ -152,9 +155,6 @@ namespace CarRental
             //Populating All Rentals 
             lvAllRentals.ItemsSource = Global.context.Rentals.ToList();
 
-            // Showing only available to rent cars on ComboBox
-            cmbCars.ItemsSource = Global.context.Cars.Where(a => a.IsAvailable == false).ToList();
-
             //Populating Rented
             lvRented.ItemsSource = Global.context.Rentals.Where(a => a.ReturnDate > thisDay).ToList();
 
@@ -163,6 +163,9 @@ namespace CarRental
 
             //Populating Future Rentals
             lvFutureRentals.ItemsSource = Global.context.Rentals.Where(a => a.RentalDate > thisDay).ToList();
+
+            // Showing only available to rent cars on ComboBox
+            cmbCars.ItemsSource = Global.context.Cars.Where(a => a.IsAvailable == true).ToList();
         }
 
         private void Window_Activated(object sender, EventArgs e)

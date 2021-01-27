@@ -26,6 +26,8 @@ namespace CarRental
 
         public float TotalFee { get; set; }
 
+        public int TotalDays { get; set; }
+
         [NotMapped]
         public float Fine { get; set; }
 

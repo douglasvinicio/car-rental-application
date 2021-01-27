@@ -44,6 +44,10 @@
                     <Label Height="25.96" Width="126" FontSize="14">Total Fees</Label>
                     <Label Content="...." Name="lblTotalFess" Height="25" Width="250" />
                 </StackPanel>
+                <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
+                    <Label Height="25.96" Width="126" FontSize="14">Num of Days</Label>
+                    <Label Content="...." Name="lblNumOfDays" Height="25" Width="250" />
+                </StackPanel>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,0,-0.8,0" Height="49">
@@ -68,11 +72,11 @@
                             <GridViewColumn Header=" Client Name " Width="100" DisplayMemberBinding="{Binding Customer.Name}" />
                             <GridViewColumn Header=" Make " Width="80" DisplayMemberBinding="{Binding Car.Make}"/>
                             <GridViewColumn Header=" Model " Width="100" DisplayMemberBinding="{Binding Car.Model}" />
-                            <GridViewColumn Header=" Year " Width="50" DisplayMemberBinding="{Binding Car.Year}" />
-                            <GridViewColumn Header=" Pick Up " Width="auto" DisplayMemberBinding="{Binding RentalDate}" />
-                            <GridViewColumn Header=" Return Date " Width="auto" DisplayMemberBinding="{Binding ReturnDate}" />
+                            <GridViewColumn Header=" Year " Width="50" DisplayMemberBinding="{Binding Car.CarYear}" />
+                            <GridViewColumn Header=" Pick Up " Width="auto" DisplayMemberBinding="{Binding RentalDate,StringFormat=d}" />
+                            <GridViewColumn Header=" Return Date " Width="auto" DisplayMemberBinding="{Binding ReturnDate,StringFormat=d}" />
                             <GridViewColumn Header=" Rental Fee " Width="auto" DisplayMemberBinding="{Binding TotalFee}" />
-                            <GridViewColumn Header=" Days " Width="40" DisplayMemberBinding="{Binding Days}" />
+                            <GridViewColumn Header=" Days " Width="40" DisplayMemberBinding="{Binding TotalDays}" />
                         </GridView>
                     </ListView.View>
                 </ListView>
