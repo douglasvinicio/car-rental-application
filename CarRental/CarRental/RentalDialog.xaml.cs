@@ -9,6 +9,7 @@ namespace CarRental
 {
     public partial class RentalDialog : Window
     {
+        DateTime thisDay = DateTime.Today;
         Customer currCustomer;
         byte[] currCarImage;
         Car currCar;
@@ -23,7 +24,7 @@ namespace CarRental
             FetchRecord();
         }
 
-        // Choose an existent client from a list
+        // Choose an existent client from a list button
         private void btnChooseClient_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -31,7 +32,7 @@ namespace CarRental
             clients.ShowDialog();
         }
 
-        // Save Rental
+        // Save Rental button
         private void btnSaveRental_Click(object sender, RoutedEventArgs e)
         {
             if (!IsFieldsValid()) { return; }
@@ -53,16 +54,23 @@ namespace CarRental
                     Comments = txtComments.Text
                 };
 
-                Global.context.Rentals.Add(rental);
-                Global.context.SaveChanges();
+                if (MessageBox.Show("Create this Rental Order? !", "Rental Order", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
 
-                // Setting Car.IsAvailable to false
-                CarAvailable(rental, false);
+                    Global.context.Rentals.Add(rental);
+                    Global.context.SaveChanges();
 
-                MessageBox.Show("Rental order created with success!");
-
-                //Clear the inputs and fetch the records again   
+                    // Setting Car.IsAvailable to false
+                    CarAvailable(rental, false);
+                    MessageBox.Show("Rental created with success !", "Rental Confirmation", MessageBoxButton.OK, MessageBoxImage.None);
+                    ClearInputs();
+                }
+                else
+                {
+                    return;
+                }
                 FetchRecord();
+
 
             }
             catch (SystemException exc)
@@ -71,11 +79,43 @@ namespace CarRental
             }
         }
 
+        // Update Rental Order
+        private void btnUpdateRental_Click(object sender, RoutedEventArgs e)
+        {
+            if (tabAllRentals.IsSelected)
+            {
+                Rental rentalUpdate = (Rental)lvAllRentals.SelectedItem;
+
+                // Making previous car available and new selected not available if car is changed
+                if (rentalUpdate.CarId != currCar.CarId)
+                {
+                    CarAvailable(rentalUpdate, true);
+                    rentalUpdate.CarId = currCar.CarId;
+                    currCar.IsAvailable = false;
+                }
+                rentalUpdate.CustomerId = currCustomer.CustomerId;
+                rentalUpdate.RentalDate = dpRentalDate.SelectedDate.Value.Date;
+                rentalUpdate.ReturnDate = dpReturnDate.SelectedDate.Value.Date;
+                rentalUpdate.TotalFee = float.Parse(lblTotalFess.Content.ToString());
+                rentalUpdate.TotalDays = currNumOfDays;
+                rentalUpdate.Status = Rental.StatusEnum.Rented;
+                rentalUpdate.Comments = txtComments.Text;
+
+                CarAvailable(rentalUpdate, false);
+
+                Global.context.SaveChanges();
+
+                MessageBox.Show("Update with Success!", "Update Rental Order", MessageBoxButton.OK);
+                FetchRecord();
+            }
+        }
+
+        // Finalize Order Button
         private void btnFinalizeOrder_Click(object sender, RoutedEventArgs e)
         {
-            if (tabRented.IsSelected == true)
+            if (tabAllRentals.IsSelected == true)
             {
-                Rental rentedFinalize = (Rental)lvRented.SelectedItem;
+                Rental rentedFinalize = (Rental)lvAllRentals.SelectedItem;
                 rentedFinalize.Status = Rental.StatusEnum.Finalized;
                 CarAvailable(rentedFinalize, true);
             }
@@ -86,7 +126,7 @@ namespace CarRental
                 CarAvailable(returnFinalized, true);
             }
 
-            MessageBox.Show("Rental order created with success!");
+            MessageBox.Show("Rental order closed", "Done", MessageBoxButton.OK, MessageBoxImage.None);
         }
 
         private void cmbCars_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -96,7 +136,7 @@ namespace CarRental
                 currCar = (Car)cmbCars.SelectedItem;
                 lblRentalFee.Content = currCar.RentalFee;
                 currCarImage = currCar.Photo;
-                BitmapImage bitmap = Utils.ByteArrayToBitmapImage(currCarImage); // ex: SystemException
+                BitmapImage bitmap = Utils.ByteArrayToBitmapImage(currCarImage);
                 imageViewer.Source = bitmap;
             }
             else
@@ -107,10 +147,7 @@ namespace CarRental
 
         // Calculating days and total fees on date change
         private void returnDateSelectionChange(object sender, SelectionChangedEventArgs e)
-        {
-
-            currCar = (Car)cmbCars.SelectedItem;
-            
+        {            
             // Checking if RentalDate is lower then ReturnDate
             if (dpRentalDate.SelectedDate < dpReturnDate.SelectedDate)
             {
@@ -138,10 +175,75 @@ namespace CarRental
             Global.context.SaveChanges();
         }
 
+        private void FetchRecord()
+        {
+
+            //Populating All Rentals 
+            lvAllRentals.ItemsSource = Global.context.Rentals.ToList();
+
+            //Populating Rented
+            lvRented.ItemsSource = Global.context.Rentals.Where(a => a.Status == Rental.StatusEnum.Rented).ToList();
+
+            //Populating Returned
+            lvReturned.ItemsSource = Global.context.Rentals.Where(a => a.ReturnDate < thisDay || a.Status == Rental.StatusEnum.Finalized).ToList();
+
+            // Showing only available to rent cars on ComboBox
+            cmbCars.ItemsSource = Global.context.Cars.Where(a => a.IsAvailable == true).ToList();
+
+            //Populating Labels 
+            lblNumOfCars.Content = Global.context.Cars.Count();
+            lblNumOfCarsOnRent.Content = Global.context.Cars.Where(a => a.IsAvailable == false).Count();
+            lblNumOfCarsAvailable.Content = Global.context.Cars.Where(a => a.IsAvailable == true).Count();
+
+            // Setting Blackout Dates to 14 days or 2 weeks on the past max.
+            CalendarDateRange cdr = new CalendarDateRange(DateTime.MinValue, DateTime.Today.AddDays(-14));
+            dpRentalDate.BlackoutDates.Add(cdr);
+            dpReturnDate.BlackoutDates.Add(cdr);
+        }
+
+
+        private void lvAllRentals_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Rental rental = (Rental)lvAllRentals.SelectedItem;
+            PopulateFieldsOnListChanged(rental);
+        }
+
+        private void lvRented_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Rental rental = (Rental)lvRented.SelectedItem;
+            PopulateFieldsOnListChanged(rental);
+        }
+
+        private void lvReturned_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Rental rental = (Rental)lvReturned.SelectedItem;
+            PopulateFieldsOnListChanged(rental);
+        }
+
+
+        private void PopulateFieldsOnListChanged(Rental rental)
+        {
+            currCar = rental.Car;
+            currCustomer = rental.Customer;
+            cmbCars.SelectedItem = "";
+            lblCustomerName.Content = currCustomer.Name;
+            lblNumOfDays.Content = rental.TotalDays;
+            currCarImage = currCar.Photo;
+            BitmapImage bitmap = Utils.ByteArrayToBitmapImage(currCarImage);
+            imageViewer.Source = bitmap;
+            dpRentalDate.SelectedDate = rental.RentalDate;
+            dpReturnDate.SelectedDate = rental.ReturnDate;
+            txtComments.Text = rental.Comments;
+        }
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            // When clients dialog is closed fetch data from db again
+            FetchRecord();
+        }
         public bool IsFieldsValid()
         {
             if (lblCustomerName.Content.ToString() == "" || cmbCars.Text == "" || lblRentalFee.Content.ToString() == "" || dpRentalDate.Text == "" || dpReturnDate.Text == "" ||
-                 lblTotalFess.Content.ToString()== "")
+                 lblTotalFess.Content.ToString() == "")
             {
                 MessageBox.Show("All fields must be filled", "Validation error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
@@ -154,44 +256,13 @@ namespace CarRental
             return true;
         }
 
-        private void FetchRecord()
-        {
-            //Todays date
-            DateTime thisDay = DateTime.Today;
-
-            //Populating All Rentals 
-            lvAllRentals.ItemsSource = Global.context.Rentals.ToList();
-
-            //Populating Rented
-            lvRented.ItemsSource = Global.context.Rentals.Where(a => a.Status == Rental.StatusEnum.Finalized).ToList();
-
-            //Populating Returned
-            lvReturned.ItemsSource = Global.context.Rentals.Where(a => a.ReturnDate < thisDay || a.Status == Rental.StatusEnum.Finalized).ToList();
-
-            // Showing only available to rent cars on ComboBox
-            cmbCars.ItemsSource = Global.context.Cars.Where(a => a.IsAvailable == true).ToList();
-
-            //Populating Labels 
-            lblNumOfCars.Content = Global.context.Cars.Count();
-            lblNumOfCarsOnRent.Content = Global.context.Cars.Where(a => a.IsAvailable == false).Count();
-            lblNumOfCarsAvailable.Content = Global.context.Cars.Where(a => a.IsAvailable == true).Count();
-        }
-
-        private void Window_Activated(object sender, EventArgs e)
-        {
-            // When clients is closed fetch data from db again
-            FetchRecord();
-        }
-
         public void ClearInputs()
         {
-            btnChooseClient.Content = "";
             lblCustomerName.Content = "";
             cmbCars.SelectedItem = "";
             lblRentalFee.Content = "";
-            dpRentalDate.SelectedDate = null;
-            dpReturnDate.SelectedDate = null;
             lblTotalFess.Content = "";
+            lblNumOfDays.Content = "";
             imageViewer.Source = null;
         }
     }

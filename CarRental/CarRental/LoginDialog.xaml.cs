@@ -24,7 +24,7 @@ namespace CarRental
             }
             else
             {
-               MessageBox.Show("Either Username or password is incorrect.");
+               MessageBox.Show("Either Username or password is incorrect.", "Login Error", MessageBoxButton.OK,MessageBoxImage.Warning, MessageBoxResult.No);
                 return;
             }      
         }

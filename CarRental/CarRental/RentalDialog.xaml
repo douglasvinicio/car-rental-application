@@ -56,7 +56,8 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,0,-0.8,0" Height="49">
-                <Button Click="btnSaveRental_Click" x:Name="btnSaveRental" Margin="150,20,0,0" Content=" Rent " Width="115" />
+                <Button Click="btnSaveRental_Click" x:Name="btnSaveRental" Margin="140,20,0,0" Content=" Save " Width="115" />
+                <Button Click="btnUpdateRental_Click" Name="btnUpdateRental" Margin="10,20,0,0" Content=" Update " Width="115" />
             </StackPanel>
             <StackPanel Height="238" Margin="0,0,-0.8,0">
                 <Grid Width="296" Height="167">
@@ -68,8 +69,8 @@
         </StackPanel>
         <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
         <TabControl Grid.Column="2" Margin="5,0,0,0.2">
-            <TabItem Name="allRentals" Header="All Rentals">
-                <ListView Name="lvAllRentals" HorizontalAlignment="Left" Height="449" Margin="10,11,-1,0" VerticalAlignment="Top" Width="800"  Grid.Column="2">
+            <TabItem Name="tabAllRentals" Header="All Rentals">
+                <ListView SelectionChanged="lvAllRentals_SelectionChanged" Name="lvAllRentals" HorizontalAlignment="Left" Height="449" Margin="10,11,-1,0" VerticalAlignment="Top" Width="800"  Grid.Column="2">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header=" Client Name " Width="100" DisplayMemberBinding="{Binding Customer.Name}" />
@@ -86,8 +87,8 @@
                     </ListView.View>
                 </ListView>
             </TabItem>
-            <TabItem Name="tabRented" Header="Currently Rented">
-                <ListView Name="lvRented" HorizontalAlignment="Left" Height="450" Margin="10,10,-1,0" VerticalAlignment="Top" Width="800"  Grid.Column="2">
+            <TabItem  Name="tabRented" Header="Currently Rented">
+                <ListView SelectionChanged="lvRented_SelectionChanged" Name="lvRented" HorizontalAlignment="Left" Height="450" Margin="10,10,-1,0" VerticalAlignment="Top" Width="800"  Grid.Column="2">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header=" Client Name " Width="100" DisplayMemberBinding="{Binding Customer.Name}" />
@@ -105,7 +106,7 @@
                 </ListView>
             </TabItem>
             <TabItem Name="tabReturned" Header=" Returned / Finalized Rentals ">
-                <ListView Name="lvReturned" HorizontalAlignment="Left" Height="450" Margin="10,10,-1,0" VerticalAlignment="Top" Width="800"  Grid.Column="2">
+                <ListView SelectionChanged="lvReturned_SelectionChanged" Name="lvReturned" HorizontalAlignment="Left" Height="450" Margin="10,10,-1,0" VerticalAlignment="Top" Width="800"  Grid.Column="2">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header=" Client Name " Width="100" DisplayMemberBinding="{Binding Customer.Name}" />
