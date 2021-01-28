@@ -33,7 +33,7 @@ namespace CarRental
 
         public bool IsFieldsValid()
         {
-            if (txtId.Text == "" || txtEmployeeName.Text == "" || txtPassword.Text == "")
+            if (lblId.Content.ToString()==null || txtEmployeeName.Text == "" || txtPassword.Text == ""|| txtSalary.Text==""|| txtRole.Text=="")
             {
                 MessageBox.Show("All fields must be filled", "Validation error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
@@ -50,19 +50,22 @@ namespace CarRental
                 return;
             }
             Employee em = (Employee)lvEmployees.SelectedItem;
-            txtId.Text = em.EmployeeID.ToString();
+            lblId.Content = em.EmployeeID.ToString();
             txtEmployeeName.Text = em.UserName;
             txtPassword.Text = em.Password;
-
+            txtSalary.Text = em.Salary;
+            txtRole.Text = em.Role;
             btnClose.IsEnabled = true;
             btnUpdateEmployee.IsEnabled = true;
         }
 
         public void ClearInputs()
         {
-            txtId.Text = "";
+            lblId.Content = "";
             txtEmployeeName.Text = "";
             txtPassword.Text = "";
+            txtSalary.Text = "";
+            txtRole.Text = "";
         }
 
         private void btnSaveEmployee_Click(object sender, RoutedEventArgs e)
@@ -73,9 +76,11 @@ namespace CarRental
             {
                 Employee em = new Employee
                 {
-                    EmployeeID = int.Parse(txtId.Text),
+                    //EmployeeID = int.Parse(txtId.Text),
                     UserName = txtEmployeeName.Text,
                     Password = txtPassword.Text,
+                    Salary= txtSalary.Text ,
+                    Role= txtRole.Text
                 };
 
                 Employee employee = Global.context.Employees.Add(em);

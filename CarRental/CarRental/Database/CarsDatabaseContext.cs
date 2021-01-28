@@ -11,7 +11,7 @@ namespace CarRental
 {
     class CarsDatabaseContext : DbContext
     {
-        const string DbName = "rentalcardatabase3.mdf";
+        const string DbName = "rentalcardatabase5.mdf";
         //const string DbName = "CarRentalDatabase.mdf";
 
         static string DbPath = Path.Combine(Environment.CurrentDirectory, DbName);

@@ -5,24 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarRental"
         mc:Ignorable="d"
-        Title="Employee" Height="450" Width="855.872">
-    <Grid Margin="0,0,3.6,0" >
+        Title="Employee" Height="507.312" Width="1085.117">
+    <Grid Margin="0,0,3.4,4.6" >
 
-        <StackPanel Margin="12,10,466,0" Height="400" VerticalAlignment="Top">
-            <StackPanel Margin="20,20,0,0">
+        <StackPanel Margin="12,10,610.8,0" Height="400" VerticalAlignment="Top">
+            <StackPanel Margin="20,20,10.8,0" Height="256">
                 <StackPanel Margin="0,10,0,0" Height="Auto" Orientation="Horizontal">
-                    <Label Height="25.96" Width="126" FontSize="14">Employee Id</Label>
-                    <TextBox  Name="txtId"  Width="200"/>
+                    <Label Height="29" Width="126" FontSize="14">Employee Id</Label>
+                    <Label  Name="lblId" Content="..."  Width="200"/>
                 </StackPanel>
                 <StackPanel Margin="0,10,0,0" Height="Auto" Width="Auto" Orientation="Horizontal">
-                    <Label Height="25.96" Width="126" FontSize="14">Employee Name</Label>
+                    <Label Height="29" Width="126" FontSize="14">Employee Name</Label>
                     <TextBox Name="txtEmployeeName" Height="25" Width="200" />
                 </StackPanel>
                 <StackPanel Margin="0,10,0,0" Height="Auto" Width="Auto" Orientation="Horizontal">
-                    <Label Height="25.96" Width="126" FontSize="14">Password</Label>
+                    <Label Height="29" Width="126" FontSize="14">Password</Label>
                     <TextBox Name="txtPassword" Height="25" Width="200"  />
                 </StackPanel>
-
+                <StackPanel Margin="0,10,0,0" Height="Auto" Width="Auto" Orientation="Horizontal">
+                    <Label Height="29" Width="126" FontSize="14">Salary</Label>
+                    <TextBox Name="txtSalary" Height="25" Width="200"  />
+                </StackPanel>
+                <StackPanel Margin="0,10,0,0" Height="Auto" Width="Auto" Orientation="Horizontal">
+                    <Label Height="29" Width="126" FontSize="14">Role</Label>
+                    <TextBox Name="txtRole" Height="25" Width="200"  />
+                </StackPanel>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,0,-0.8,0" Height="49">
@@ -32,17 +39,20 @@
             </StackPanel>
 
         </StackPanel>
-        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" Margin="0.4,0,72.289,0" />
+        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" Margin="0.4,0,170,0" />
 
-        <ListView Name="lvEmployees" HorizontalAlignment="Left" Height="229" Margin="394,57,0,0" VerticalAlignment="Top" Width="422" SelectionChanged="LvEmployees_SelectionChanged">
+        <ListView Name="lvEmployees" HorizontalAlignment="Left" Height="336" Margin="462,74,0,0" VerticalAlignment="Top" Width="565" SelectionChanged="LvEmployees_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Id" Width="100" DisplayMemberBinding="{Binding EmployeeID}" />
+                    <GridViewColumn Header="Id" Width="50" DisplayMemberBinding="{Binding EmployeeID}" />
                     <GridViewColumn Header=" Employee Name " Width="200" DisplayMemberBinding="{Binding UserName}"/>
                     <GridViewColumn Header=" Password " Width="100" DisplayMemberBinding="{Binding Password}" />
+                    <GridViewColumn Header=" Salary " Width="100" DisplayMemberBinding="{Binding Salary}" />
+                    <GridViewColumn Header=" Role " Width="100" DisplayMemberBinding="{Binding Role}" />
 
                 </GridView>
             </ListView.View>
         </ListView>
+        <Label Content="Employee List" HorizontalAlignment="Left" Margin="656,29,0,0" VerticalAlignment="Top" FontSize="22"/>
     </Grid>
 </Window>

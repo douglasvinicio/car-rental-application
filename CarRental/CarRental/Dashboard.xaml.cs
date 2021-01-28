@@ -47,7 +47,8 @@ namespace CarRental
 
         private void btnEmployees_Click(object sender, RoutedEventArgs e)
         {
-
+            EmployeeDialog employeeDialog = new EmployeeDialog();
+            employeeDialog.Show();
         }
     }
 }
