@@ -28,8 +28,10 @@ namespace CarRental
 
         public int TotalDays { get; set; }
 
-        public string Status {get; set; }
-
+        //public string Status {get; set; }
+        [EnumDataType(typeof(StatusEnum))]
+        public StatusEnum Status { get; set; }
+        public enum StatusEnum { Rented = 1, Finalized = 2, Cancelled=3}
         public string Comments { get; set; }
 
         [NotMapped]
