@@ -12,49 +12,49 @@
             <ColumnDefinition Width="5" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <ListView Name="LvCarsDialog" HorizontalAlignment="Left" Height="551" Margin="10,22,0,0" VerticalAlignment="Top" Width="800" SelectionChanged="LvCarsDialog_SelectionChanged">
+        <ListView Name="LvCarsDialog" HorizontalAlignment="Left" Height="551" Margin="10,22,0,0" VerticalAlignment="Top" Width="800" SelectionChanged="LvCarsDialog_SelectionChanged" FontWeight="Bold">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header=" RegNo " Width="50" DisplayMemberBinding="{Binding RegNum}" />
-                    <GridViewColumn Header=" Make " Width="100" DisplayMemberBinding="{Binding Make}"  />
+                    <GridViewColumn Header=" RegNo " Width="100" DisplayMemberBinding="{Binding RegNum}" />
+                    <GridViewColumn Header=" Make " Width="80" DisplayMemberBinding="{Binding Make}"  />
                     <GridViewColumn Header=" Model " Width="100" DisplayMemberBinding="{Binding Model}" />
                     <GridViewColumn Header=" Year " Width="50" DisplayMemberBinding="{Binding CarYear}" />
-                    <GridViewColumn Header=" Category " Width="80" DisplayMemberBinding="{Binding CarCategory}" />
+                    <GridViewColumn Header=" Category " Width="90" DisplayMemberBinding="{Binding CarCategory}" />
                     <GridViewColumn Header=" Capacity " Width="60" DisplayMemberBinding="{Binding PassengerCapacity}" />
-                    <GridViewColumn Header=" Automatic " Width="110" DisplayMemberBinding="{Binding AutoTransmission}" />
-                    <GridViewColumn Header=" Rental Fee " Width="60" DisplayMemberBinding="{Binding RentalFee}" />
-                    <GridViewColumn Header=" Bluetooth " Width="100" DisplayMemberBinding="{Binding BluetoothConn}" />
-                    <GridViewColumn Header=" Available " Width="100" DisplayMemberBinding="{Binding IsAvailable}" />
+                    <GridViewColumn Header=" Automatic " Width="70" DisplayMemberBinding="{Binding AutoTransmission}" />
+                    <GridViewColumn Header=" Rental Fee " Width="70" DisplayMemberBinding="{Binding RentalFee}" />
+                    <GridViewColumn Header=" Bluetooth " Width="80" DisplayMemberBinding="{Binding BluetoothConn}" />
+                    <GridViewColumn Header=" Available " Width="80" DisplayMemberBinding="{Binding IsAvailable}" />
                 </GridView>
             </ListView.View>
         </ListView>
 
-        <Label Content="Total number of Cars:" HorizontalAlignment="Left" Margin="24,594,0,0" VerticalAlignment="Top" Width="184" FontSize="18"/>
+        <Label Content="Total number of Cars:" HorizontalAlignment="Left" Margin="24,594,0,0" VerticalAlignment="Top" Width="184" FontSize="18" FontWeight="Bold"/>
         <Label Name="lblNumOfCars" Content="..." HorizontalAlignment="Left" Margin="227,594,0,0" VerticalAlignment="Top" FontSize="18"/>
 
         <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
         <StackPanel Margin="23.2,22,10,6" Grid.Column="2">
             <StackPanel Margin="20,20,0,0">
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
-                    <Label Height="25.96" Width="126" FontSize="14">RegNo</Label>
+                    <Label Height="30" Width="128" FontSize="14">RegNo</Label>
                     <TextBox Name="txtRegNo" Height="25" Width="250" />
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
-                    <Label Height="25.96" Width="126" FontSize="14">Make</Label>
+                    <Label Height="30" Width="128" FontSize="14">Make</Label>
                     <TextBox Name="txtMake" Height="25" Width="250" />
                 </StackPanel>
             </StackPanel>
             <StackPanel Margin="20,0,0,0" >
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
-                    <Label Height="25.96" Width="126" FontSize="14">Model</Label>
+                    <Label Height="30" Width="128" FontSize="14">Model</Label>
                     <TextBox Name="txtModel" Height="25" Width="250" />
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
-                    <Label Height="25.96" Width="126" FontSize="14">Car Year</Label>
+                    <Label Height="30" Width="128" FontSize="14">Car Year</Label>
                     <TextBox Name="txtCarYear" Height="25" Width="250" />
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
-                    <Label Height="25.96" Width="126" FontSize="14">Category</Label>
+                    <Label Height="30" Width="128" FontSize="14">Category</Label>
                     <ComboBox Name="cmbCategory" Height="25" Width="250">
                         <ComboBoxItem Content = "Sedan" />
                         <ComboBoxItem Content = "Sport" />
@@ -62,7 +62,7 @@
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
-                    <Label Height="25.96" Width="126" FontSize="14">Passenger Capacity</Label>
+                    <Label Height="30" Width="128" FontSize="14">Passenger Capacity</Label>
                     <ComboBox Name="cmbCapacity" Height="25" Width="250">
                         <ComboBoxItem Content = "4" />
                         <ComboBoxItem Content = "5" />
@@ -70,19 +70,19 @@
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
-                    <Label Height="25.96" Width="126" FontSize="14">Rental Fee</Label>
+                    <Label Height="30" Width="128" FontSize="14">Rental Fee</Label>
                     <TextBox Name="txtRentalFee" Height="25" Width="250" />
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
-                    <Label Height="25.96" Width="126" FontSize="14">Auto Transmission</Label>
+                    <Label Height="30" Width="128" FontSize="14">Auto Transmission</Label>
                     <CheckBox Name="chboxAutomatic" Content="Yes" IsChecked="False"/>
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
-                    <Label Height="25.96" Width="126" FontSize="14">Bluetooth Conn</Label>
+                    <Label Height="30" Width="128" FontSize="14">Bluetooth Conn</Label>
                     <CheckBox Name="chboxBluetooth" Content="Yes" IsChecked="False"/>
                 </StackPanel>
                 <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
-                    <Label Height="25.96" Width="126" FontSize="14">IsAvailable</Label>
+                    <Label Height="30" Width="128" FontSize="14">IsAvailable</Label>
                     <CheckBox Name="chboxAvailable" Content="Yes" IsChecked="False"/>
                 </StackPanel>
 
