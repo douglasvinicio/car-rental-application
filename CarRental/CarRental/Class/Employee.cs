@@ -15,12 +15,16 @@ namespace CarRental
         [StringLength(30)]
         public string UserName { get; set; }
 
+        public string Password { get; set; }
 
-        [NotMapped]
-        public string Password
-        {
-            get { return Password; }
-            set {  Utils.GetPasswordHash(value); }
-        }       
+        public string Salary { get; set; }
+
+        public string Role { get; set; }
+
+        //public string Password
+        //{
+        //    get { return Password; }
+        //    set {  Utils.GetPasswordHash(value); }
+        //}       
     }
 }

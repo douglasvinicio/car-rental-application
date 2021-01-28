@@ -33,7 +33,7 @@ namespace CarRental
 
         public bool IsFieldsValid()
         {
-            if (txtId.Text == "" || txtEmployeeName.Text == "" || txtPassword.Text == "")
+            if (lblId.Content.ToString()==null || txtEmployeeName.Text == "" || txtPassword.Text == "")
             {
                 MessageBox.Show("All fields must be filled", "Validation error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
@@ -50,7 +50,7 @@ namespace CarRental
                 return;
             }
             Employee em = (Employee)lvEmployees.SelectedItem;
-            txtId.Text = em.EmployeeID.ToString();
+            lblId.Content = em.EmployeeID.ToString();
             txtEmployeeName.Text = em.UserName;
             txtPassword.Text = em.Password;
 
@@ -60,7 +60,7 @@ namespace CarRental
 
         public void ClearInputs()
         {
-            txtId.Text = "";
+            lblId.Content = "";
             txtEmployeeName.Text = "";
             txtPassword.Text = "";
         }
@@ -73,7 +73,7 @@ namespace CarRental
             {
                 Employee em = new Employee
                 {
-                    EmployeeID = int.Parse(txtId.Text),
+                    //EmployeeID = int.Parse(txtId.Text),
                     UserName = txtEmployeeName.Text,
                     Password = txtPassword.Text,
                 };
