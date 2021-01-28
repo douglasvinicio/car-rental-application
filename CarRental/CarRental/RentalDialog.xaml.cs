@@ -49,7 +49,7 @@ namespace CarRental
                     ReturnDate = dpReturnDate.SelectedDate.Value.Date,
                     TotalFee = float.Parse(lblTotalFess.Content.ToString()),
                     TotalDays = currNumOfDays,
-                    Status = "Rented",
+                    Status = Rental.StatusEnum.Rented,
                     Comments = txtComments.Text
                 };
 
@@ -76,13 +76,13 @@ namespace CarRental
             if (tabRented.IsSelected == true)
             {
                 Rental rentedFinalize = (Rental)lvRented.SelectedItem;
-                rentedFinalize.Status = "Finalized";
+                rentedFinalize.Status = Rental.StatusEnum.Finalized;
                 CarAvailable(rentedFinalize, true);
             }
             if (tabReturned.IsSelected == true)
             {
                 Rental returnFinalized = (Rental)lvReturned.SelectedItem;
-                returnFinalized.Status = "Finalized";
+                returnFinalized.Status = Rental.StatusEnum.Finalized;
                 CarAvailable(returnFinalized, true);
             }
 
@@ -163,10 +163,10 @@ namespace CarRental
             lvAllRentals.ItemsSource = Global.context.Rentals.ToList();
 
             //Populating Rented
-            lvRented.ItemsSource = Global.context.Rentals.Where(a => a.Status == "Rented").ToList();
+            lvRented.ItemsSource = Global.context.Rentals.Where(a => a.Status == Rental.StatusEnum.Finalized).ToList();
 
             //Populating Returned
-            lvReturned.ItemsSource = Global.context.Rentals.Where(a => a.ReturnDate < thisDay || a.Status == "Finalized" ).ToList();
+            lvReturned.ItemsSource = Global.context.Rentals.Where(a => a.ReturnDate < thisDay || a.Status == Rental.StatusEnum.Finalized).ToList();
 
             // Showing only available to rent cars on ComboBox
             cmbCars.ItemsSource = Global.context.Cars.Where(a => a.IsAvailable == true).ToList();

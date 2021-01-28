@@ -12,7 +12,7 @@
             <ColumnDefinition Width="5" />
             <ColumnDefinition Width="820" />
         </Grid.ColumnDefinitions>
-        <StackPanel Margin="10,10,26.2,0" Height="450" VerticalAlignment="Top">
+        <StackPanel Margin="10,10,26.2,0" Height="514" VerticalAlignment="Top">
             <StackPanel Margin="20,20,0,0">
                 <StackPanel Margin="0,5,0,0" Height="Auto" Width="Auto" Orientation="Horizontal">
                     <Label Height="25.96" Width="126" FontSize="14">Client</Label>
@@ -61,7 +61,7 @@
             <StackPanel Height="238" Margin="0,0,-0.8,0">
                 <Grid Width="296" Height="167">
                     <TextBlock x:Name="tbImage" Text="" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Image x:Name="imageViewer" Stretch="UniformToFill" Margin="10" />
+                    <Image x:Name="imageViewer" Stretch="UniformToFill" Margin="-32,10,10,-18" />
                 </Grid>
 
             </StackPanel>

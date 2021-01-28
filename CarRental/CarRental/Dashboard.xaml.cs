@@ -39,7 +39,7 @@ namespace CarRental
 
         private void btnRentals_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Button Rentals was clicked!");
+            //MessageBox.Show("Button Rentals was clicked!");
             Customer customer = new Customer();
             RentalDialog rentalsDialog = new RentalDialog(customer);
             rentalsDialog.ShowDialog();

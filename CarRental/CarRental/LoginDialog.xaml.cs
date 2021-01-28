@@ -14,16 +14,15 @@ namespace CarRental
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
 
-            if(Global.context.Employees.Find().UserName== txtUsername.Text && Global.context.Employees.Find().UserName == passwordbox.Password)
-            {
+            //if(Global.context.Employees.Find().UserName== txtUsername.Text && Global.context.Employees.Find().Password == passwordbox.Password.ToString())
+            //{
                 Dashboard dashboardWindow = new Dashboard();
                 this.Close();
                 dashboardWindow.ShowDialog();
-            } else
-            {
-                MessageBox.Show("Either Username or password is incorrect.");
-            }
-        
+            //} else
+            //{
+            //    MessageBox.Show("Either Username or password is incorrect.");
+            //}      
         }
     }
 }
