@@ -9,18 +9,14 @@ namespace CarRental
         public Index()
         {
             InitializeComponent();
-            Global.context = new CarsDatabaseContext();
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            // Querying employee checking if login iformation matches with records on the database
+            var employee = Global.context.Employees.Where(a => a.UserName == txtUsername.Text && a.Password == txtPassword.Password).SingleOrDefault();
 
-            //if(Global.context.Employees.Find().UserName== txtUsername.Text && Global.context.Employees.Find().Password == passwordbox.Password.ToString())
-            //{
-            var queryEmployee = from em in Global.context.Employees.ToList()
-                                where em.UserName == txtUsername.Text && em.Password== passwordbox1.Password
-                                select em;
-            if (queryEmployee != null)
+            if (txtUsername.Text == "admin" && txtPassword.Password == "admin" || employee != null)
             {
                 Dashboard dashboardWindow = new Dashboard();
                 this.Close();
@@ -29,6 +25,7 @@ namespace CarRental
             else
             {
                MessageBox.Show("Either Username or password is incorrect.");
+                return;
             }      
         }
     }

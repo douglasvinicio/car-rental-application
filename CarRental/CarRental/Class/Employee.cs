@@ -24,11 +24,6 @@ namespace CarRental
         public override string ToString()
         {
             return string.Format("{0} {1}", UserName, Password);
-        }
-        //public string Password
-        //{
-        //    get { return Password; }
-        //    set {  Utils.GetPasswordHash(value); }
-        //}       
+        }      
     }
 }
