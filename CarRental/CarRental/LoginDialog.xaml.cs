@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
 
 
 namespace CarRental
@@ -16,13 +17,19 @@ namespace CarRental
 
             //if(Global.context.Employees.Find().UserName== txtUsername.Text && Global.context.Employees.Find().Password == passwordbox.Password.ToString())
             //{
+            var queryEmployee = from em in Global.context.Employees.ToList()
+                                where em.UserName == txtUsername.Text && em.Password== passwordbox1.Password
+                                select em;
+            if (queryEmployee != null)
+            {
                 Dashboard dashboardWindow = new Dashboard();
                 this.Close();
                 dashboardWindow.ShowDialog();
-            //} else
-            //{
-            //    MessageBox.Show("Either Username or password is incorrect.");
-            //}      
+            }
+            else
+            {
+               MessageBox.Show("Either Username or password is incorrect.");
+            }      
         }
     }
 }
