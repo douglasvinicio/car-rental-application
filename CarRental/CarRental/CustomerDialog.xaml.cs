@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace CarRental
 {
-    /// <summary>
-    /// Interaction logic for CustomerDialog.xaml
-    /// </summary>
     public partial class CustomerDialog : Window
     {
         ClientsDialog clientsDialog = new ClientsDialog();
@@ -42,15 +39,16 @@ namespace CarRental
             }
             
             try
-            {                
+            {    // If customer exists, update the data            
                 if (currCustomer != null)
                 {
-                    MessageBox.Show("Not Null");
                     currCustomer.Name = txtName.Text;
                     Global.context.SaveChanges();
+                    MessageBox.Show("Customer Updated!", "Customer" , MessageBoxButton.OK);
                     this.Close();
 
                 }
+                // If customer doesn't exist yet create a new one 
                 else
                 {
                     Customer customer = new Customer() { Name = txtName.Text, DriverLicenseNo = txtLicenceNo.Text, Address = txtAddress.Text, City = txtCity.Text, State = txtState.Text, Country = txtCountry.Text, Phone = txtPhone.Text, Email = txtEmail.Text };
