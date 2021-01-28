@@ -21,6 +21,10 @@ namespace CarRental
 
         public string Role { get; set; }
 
+        public override string ToString()
+        {
+            return string.Format("{0} {1}", UserName, Password);
+        }
         //public string Password
         //{
         //    get { return Password; }

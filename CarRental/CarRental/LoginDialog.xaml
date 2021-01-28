@@ -13,6 +13,6 @@
         <Label Content="Username" HorizontalAlignment="Left" Margin="246,280,0,0" VerticalAlignment="Top"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="246,319,0,0" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="273,31,0,0" TextWrapping="Wrap" FontWeight="ExtraBlack" FontSize="35" FontFamily="Verdun" Text="JA Car Rental" VerticalAlignment="Top"/>
-        <PasswordBox HorizontalAlignment="Left" Margin="330,319,0,0" VerticalAlignment="Top" Width="138" Height="23"/>
+        <PasswordBox Name="passwordbox" HorizontalAlignment="Left" Margin="330,319,0,0" VerticalAlignment="Top" Width="138" Height="23"/>
     </Grid>
 </Window>
