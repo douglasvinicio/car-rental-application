@@ -33,7 +33,7 @@ namespace CarRental
 
         public bool IsFieldsValid()
         {
-            if (lblId.Content.ToString()==null || txtEmployeeName.Text == "" || txtPassword.Text == ""|| txtSalary.Text==""|| txtRole.Text=="")
+            if (lblId.Content.ToString()==null || txtEmployeeName.Text == "" || txtPassword.Password == ""|| txtSalary.Text==""|| txtRole.Text=="")
             {
                 MessageBox.Show("All fields must be filled", "Validation error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
@@ -52,7 +52,7 @@ namespace CarRental
             Employee em = (Employee)lvEmployees.SelectedItem;
             lblId.Content = em.EmployeeID.ToString();
             txtEmployeeName.Text = em.UserName;
-            txtPassword.Text = em.Password;
+            txtPassword.Password = em.Password;
             txtSalary.Text = em.Salary;
             txtRole.Text = em.Role;
             btnClose.IsEnabled = true;
@@ -63,7 +63,7 @@ namespace CarRental
         {
             lblId.Content = "";
             txtEmployeeName.Text = "";
-            txtPassword.Text = "";
+            txtPassword.Password = "";
             txtSalary.Text = "";
             txtRole.Text = "";
         }
@@ -78,7 +78,7 @@ namespace CarRental
                 {
                     //EmployeeID = int.Parse(txtId.Text),
                     UserName = txtEmployeeName.Text,
-                    Password = txtPassword.Text,
+                    Password = txtPassword.Password,
                     Salary= txtSalary.Text ,
                     Role= txtRole.Text
                 };
