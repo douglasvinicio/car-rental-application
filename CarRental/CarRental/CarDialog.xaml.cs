@@ -79,9 +79,11 @@ namespace CarRental
                     IsAvailable = chboxAvailable.IsChecked.Value,
                     Photo = currCarImage
                 };
-
+                // Adding new car to database and saving it
                 Car car = Global.context.Cars.Add(c);
                 Global.context.SaveChanges();
+
+                MessageBox.Show("Congratulations!\nCar added to the database!", "New Car", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 ClearInputs();
                 FetchRecord();
@@ -117,6 +119,7 @@ namespace CarRental
               
                 Global.context.SaveChanges();
 
+                MessageBox.Show("Congratulations!\nCar information updated with success!", "Car Update", MessageBoxButton.OK, MessageBoxImage.Information);
                 FetchRecord();
             }
             catch (SystemException ex)
@@ -137,6 +140,7 @@ namespace CarRental
             {
                 Global.context.Cars.Remove(carTobeDeleted);
                 Global.context.SaveChanges();
+                MessageBox.Show("Car removed from the database","Car Delete", MessageBoxButton.OK, MessageBoxImage.Information);
                 ClearInputs();
                 FetchRecord();
             }
@@ -209,22 +213,3 @@ namespace CarRental
         }
     }
 }
-
-/*
-
-        private void cmbFindAvailability_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (cmbFindAvailability.SelectedItem.ToString() == "Available")
-            {
-                var carsAvailable = Global.context.Cars.Where(c => c.IsAvailable.ToString() == "Available");
-                LvCarsDialog.ItemsSource = carsAvailable.ToList();
-            }
-            else
-            {
-                var carsAvailable = Global.context.Cars.Where(c => c.IsAvailable.ToString() == "Rented");
-                LvCarsDialog.ItemsSource = carsAvailable.ToList();
-            }
-            lblNumOfCars.Content = LvCarsDialog.Items.Count;
-        }
-
-*/

@@ -44,7 +44,7 @@ namespace CarRental
                 {
                     currCustomer.Name = txtName.Text;
                     Global.context.SaveChanges();
-                    MessageBox.Show("Customer Updated!", "Customer" , MessageBoxButton.OK);
+                    MessageBox.Show("Congratulations!\nCustomer Updated with success!", "Customer Update" , MessageBoxButton.OK, MessageBoxImage.Information);
                     this.Close();
 
                 }
@@ -53,6 +53,7 @@ namespace CarRental
                 {
                     Customer customer = new Customer() { Name = txtName.Text, DriverLicenseNo = txtLicenceNo.Text, Address = txtAddress.Text, City = txtCity.Text, State = txtState.Text, Country = txtCountry.Text, Phone = txtPhone.Text, Email = txtEmail.Text };
                     Global.context.Customers.Add(customer);
+                    MessageBox.Show("Congratulations!\nCustomer added to the database!", "New Customer", MessageBoxButton.OK, MessageBoxImage.Information);
                     Global.context.SaveChanges();
                     this.Close();
                 }

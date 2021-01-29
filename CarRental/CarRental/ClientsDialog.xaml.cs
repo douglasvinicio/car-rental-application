@@ -45,6 +45,7 @@ namespace CarRental
         {
             Customer customerDelete = (Customer)LvClientDialog.SelectedItem;
             Global.context.Customers.Remove(customerDelete);
+            MessageBox.Show("Congratulations!\nClient removed from the database", "Client Delete", MessageBoxButton.OK, MessageBoxImage.Information);
             Global.context.SaveChanges();
 
             LoadData();

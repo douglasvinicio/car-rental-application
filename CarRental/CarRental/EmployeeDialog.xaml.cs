@@ -28,7 +28,6 @@ namespace CarRental
         private void FetchRecord()
         {
             lvEmployees.ItemsSource = Global.context.Employees.ToList();
-            //lblNumOfCars.Content = lvEmployees.Items.Count;
         }
 
         public bool IsFieldsValid()
@@ -84,6 +83,7 @@ namespace CarRental
                 };
 
                 Employee employee = Global.context.Employees.Add(em);
+                MessageBox.Show("Congratulations!\nEmployee added to the database with success!", "New Employee", MessageBoxButton.OK, MessageBoxImage.Information);
                 Global.context.SaveChanges();
 
                 ClearInputs();
