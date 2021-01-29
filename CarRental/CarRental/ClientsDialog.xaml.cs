@@ -43,12 +43,16 @@ namespace CarRental
 
         private void btnDeleteCustomer_Click(object sender, RoutedEventArgs e)
         {
-            Customer customerDelete = (Customer)LvClientDialog.SelectedItem;
-            Global.context.Customers.Remove(customerDelete);
-            MessageBox.Show("Congratulations!\nClient removed from the database", "Client Delete", MessageBoxButton.OK, MessageBoxImage.Information);
-            Global.context.SaveChanges();
+            if (MessageBox.Show("Delete this customer? \n Are you sure?", "Delete Customer", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                Customer customerDelete = (Customer)LvClientDialog.SelectedItem;
+                Global.context.Customers.Remove(customerDelete);
+                MessageBox.Show("Congratulations!\nClient removed from the database", "Client Delete", MessageBoxButton.OK, MessageBoxImage.Information);
+                Global.context.SaveChanges();
 
-            LoadData();
+                LoadData();
+            }
+            
         }
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {

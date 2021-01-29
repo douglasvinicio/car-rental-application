@@ -57,7 +57,7 @@
 
             <StackPanel Orientation="Horizontal" Margin="0,0,-0.8,0" Height="49">
                 <Button Click="btnSaveRental_Click" x:Name="btnSaveRental" Margin="140,20,0,0" Content=" Save " Width="115" />
-                <Button Click="btnUpdateRental_Click" Name="btnUpdateRental" Margin="10,20,0,0" Content=" Update " Width="115" />
+                <Button IsEnabled="False" Click="btnUpdateRental_Click" Name="btnUpdateRental" Margin="10,20,0,0" Content=" Update " Width="115" />
             </StackPanel>
             <StackPanel Height="238" Margin="0,0,-0.8,0">
                 <Grid Width="296" Height="167">

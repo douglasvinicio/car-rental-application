@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CarRental
 {
-    class Employee
+    public class Employee
     {
         [Key]
         public int EmployeeID { get; set; }

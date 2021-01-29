@@ -35,8 +35,8 @@
 
             <StackPanel Orientation="Horizontal" Margin="0,0,-0.8,0" Height="49">
                 <Button Click="btnSaveEmployee_Click" Name="btnSaveEmployee" Margin="105,20,0,0" Content=" Save " Width="75" />
-                <Button Name="btnUpdateEmployee" Margin="10,20,0,0" Content=" Update " Width="75" IsEnabled="False"/>
-                <Button Name="btnClose" Margin="10,20,0,0" Content=" Close " Width="84" IsEnabled="False"/>
+                <Button Click="btnUpdateEmployee_Click" Name="btnUpdateEmployee" Margin="10,20,0,0" Content=" Update " Width="75" IsEnabled="False"/>
+                <Button Click="btnDeleteEmployee_Click" Name="btnDeleteEmployee" Margin="10,20,0,0" Content=" Delete " Width="84" IsEnabled="False"/>
             </StackPanel>
 
         </StackPanel>

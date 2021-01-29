@@ -20,7 +20,10 @@ namespace CarRental
             InitializeComponent();
             // Assigning Customer Object to currCustomer
             currCustomer = customer;
-            lblCustomerName.Content = currCustomer.Name;
+            if (currCustomer != null)
+            {
+                lblCustomerName.Content = currCustomer.Name;
+            }
             FetchRecord();
         }
 
@@ -125,6 +128,13 @@ namespace CarRental
                 returnFinalized.Status = Rental.StatusEnum.Finalized;
                 CarAvailable(returnFinalized, true);
             }
+            if (tabRented.IsSelected == true)
+            {
+                Rental returnFinalized = (Rental)lvRented.SelectedItem;
+                returnFinalized.Status = Rental.StatusEnum.Finalized;
+                CarAvailable(returnFinalized, true);
+            }
+
 
             MessageBox.Show("Rental order closed", "Done", MessageBoxButton.OK, MessageBoxImage.Information);
         }
@@ -206,25 +216,35 @@ namespace CarRental
 
         private void lvAllRentals_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Rental rental = (Rental)lvAllRentals.SelectedItem;
-            PopulateFieldsOnListChanged(rental);
+            Rental rental = (Rental)lvRented.SelectedItem;
+            if (rental != null)
+            {
+                PopulateFieldsOnListChanged(rental);
+            }
         }
 
         private void lvRented_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Rental rental = (Rental)lvRented.SelectedItem;
-            PopulateFieldsOnListChanged(rental);
+            if (rental != null)
+            {
+                PopulateFieldsOnListChanged(rental);
+            }
         }
 
         private void lvReturned_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Rental rental = (Rental)lvReturned.SelectedItem;
-            PopulateFieldsOnListChanged(rental);
+            Rental rental = (Rental)lvRented.SelectedItem;
+            if (rental != null)
+            {
+                PopulateFieldsOnListChanged(rental);
+            }
         }
 
         // Populating fields / Method is being used in 3 different List Views
         private void PopulateFieldsOnListChanged(Rental rental)
         {
+            btnUpdateRental.IsEnabled = true;
             currCar = rental.Car;
             currCustomer = rental.Customer;
             cmbCars.SelectedItem = "";
