@@ -62,7 +62,7 @@ namespace CarRental
 
                     // Setting Car.IsAvailable to false
                     CarAvailable(rental, false);
-                    MessageBox.Show("Rental created with success !", "Rental Confirmation", MessageBoxButton.OK, MessageBoxImage.None);
+                    MessageBox.Show("Rental created with success !", "Rental Confirmation", MessageBoxButton.OK, MessageBoxImage.Information);
                     ClearInputs();
                 }
                 else
@@ -105,7 +105,7 @@ namespace CarRental
 
                 Global.context.SaveChanges();
 
-                MessageBox.Show("Update with Success!", "Update Rental Order", MessageBoxButton.OK);
+                MessageBox.Show("Update with Success!", "Update Rental Order", MessageBoxButton.OK, MessageBoxImage.Information);
                 FetchRecord();
             }
         }
@@ -126,7 +126,7 @@ namespace CarRental
                 CarAvailable(returnFinalized, true);
             }
 
-            MessageBox.Show("Rental order closed", "Done", MessageBoxButton.OK, MessageBoxImage.None);
+            MessageBox.Show("Rental order closed", "Done", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void cmbCars_SelectionChanged(object sender, SelectionChangedEventArgs e)
