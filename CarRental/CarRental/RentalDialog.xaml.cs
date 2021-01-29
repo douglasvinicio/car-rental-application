@@ -129,6 +129,7 @@ namespace CarRental
             MessageBox.Show("Rental order closed", "Done", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        // On combobox changed change picture of the car
         private void cmbCars_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cmbCars.SelectedItem != null)
@@ -163,6 +164,7 @@ namespace CarRental
             }
         }
 
+        // Method to make car available or not availbale passing Rental and Bool as parameters
         private void CarAvailable(Rental rental, bool available)
         {
             //Making Car.IsAvailable field false if rented.
@@ -220,7 +222,7 @@ namespace CarRental
             PopulateFieldsOnListChanged(rental);
         }
 
-
+        // Populating fields / Method is being used in 3 different List Views
         private void PopulateFieldsOnListChanged(Rental rental)
         {
             currCar = rental.Car;
