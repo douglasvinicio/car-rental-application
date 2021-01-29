@@ -133,6 +133,7 @@
         <Label x:Name="lblNumOfCarsAvailable" Content="..." HorizontalAlignment="Left" Margin="433,492,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.188,-0.912" Width="22" Grid.Column="2"/>
         <Grid Grid.Column="2" HorizontalAlignment="Left" Height="30" Margin="460,496,0,0" VerticalAlignment="Top" Width="350">
             <Button Click="btnFinalizeOrder_Click" Name="btnFinalizeOrder" Content="Finalize Rental Order" HorizontalAlignment="Left" Margin="199,0,0,0" VerticalAlignment="Top" Width="151" Height="30"/>
+            <Button Click="btnDeleteOrder_Click" IsEnabled="False"  Name="btnDeleteOrder" Content="Delete Rental Order" HorizontalAlignment="Left" Margin="28,0,0,0" VerticalAlignment="Top" Width="151" Height="30"/>
         </Grid>
     </Grid>
 </Window>

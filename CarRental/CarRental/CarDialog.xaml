@@ -29,8 +29,8 @@
             </ListView.View>
         </ListView>
 
-        <Label Content="Total number of Cars:" HorizontalAlignment="Left" Margin="24,594,0,0" VerticalAlignment="Top" Width="184" FontSize="18" FontWeight="Bold"/>
-        <Label Name="lblNumOfCars" Content="..." HorizontalAlignment="Left" Margin="227,594,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Total number of Cars:" HorizontalAlignment="Left" Margin="24,594,0,0" VerticalAlignment="Top" Width="198" FontSize="18" FontWeight="Bold"/>
+        <Label Name="lblNumOfCars" Content="..." HorizontalAlignment="Left" Margin="231,594,0,0" VerticalAlignment="Top" FontSize="18"/>
 
         <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
         <StackPanel Margin="23.2,22,10,6" Grid.Column="2">

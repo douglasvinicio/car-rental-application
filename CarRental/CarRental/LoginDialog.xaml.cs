@@ -18,7 +18,7 @@ namespace CarRental
 
             if (txtUsername.Text == "admin" && txtPassword.Password == "admin" || employee != null)
             {
-                Dashboard dashboardWindow = new Dashboard();
+                Dashboard dashboardWindow = new Dashboard(employee);
                 this.Close();
                 dashboardWindow.ShowDialog();
             }

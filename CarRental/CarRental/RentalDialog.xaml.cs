@@ -211,11 +211,18 @@ namespace CarRental
             CalendarDateRange cdr = new CalendarDateRange(DateTime.MinValue, DateTime.Today.AddDays(-14));
             dpRentalDate.BlackoutDates.Add(cdr);
             dpReturnDate.BlackoutDates.Add(cdr);
+
+            //Item Refresh on Lists
+            lvAllRentals.Items.Refresh();
+            lvRented.Items.Refresh();
+            lvReturned.Items.Refresh();
         }
 
 
         private void lvAllRentals_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            btnDeleteOrder.IsEnabled = true;
+
             Rental rental = (Rental)lvRented.SelectedItem;
             if (rental != null)
             {
@@ -286,6 +293,15 @@ namespace CarRental
             lblTotalFess.Content = "";
             lblNumOfDays.Content = "";
             imageViewer.Source = null;
+        }
+
+        private void btnDeleteOrder_Click(object sender, RoutedEventArgs e)
+        {
+            Rental rentalDelete = (Rental)lvAllRentals.SelectedItem;
+            Global.context.Rentals.Remove(rentalDelete);
+            Global.context.SaveChanges();
+            FetchRecord();
+            ClearInputs();
         }
     }
 }

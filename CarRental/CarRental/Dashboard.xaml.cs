@@ -19,9 +19,17 @@ namespace CarRental
     /// </summary>
     public partial class Dashboard : Window
     {
-        public Dashboard()
+        public Dashboard(Employee employee)
         {
             InitializeComponent();
+            if (employee != null)
+            {
+                lblEmployee.Content = employee.UserName;
+            } else
+            {
+                lblEmployee.Content = "SuperUser";
+            }
+            
         }
 
         private void btnClients_Click(object sender, RoutedEventArgs e)
