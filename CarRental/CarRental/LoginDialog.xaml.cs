@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Windows;
 
-
 namespace CarRental
 {
     public partial class Index : Window
